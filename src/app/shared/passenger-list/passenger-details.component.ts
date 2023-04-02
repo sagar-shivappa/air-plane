@@ -11,13 +11,20 @@ import { SharedService } from '../shared.service';
 export class PassengerDetailsComponent implements OnInit {
   passengersList: any = [];
   flightNo: any;
+  actionType: any;
   constructor(
     private http: HttpClient,
     private router: Router,
     private sharedService: SharedService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sharedService.flightInfo.subscribe((data: any) => {
+      this.flightNo = data.flightNo;
+      this.passengersList = data.passengers;
+      console.log(data);
+    });
+  }
   searchFlight() {
     this.http.get('assets/mock/passengers.json').subscribe((res: any) => {
       this.passengersList = res.filter(
@@ -30,7 +37,7 @@ export class PassengerDetailsComponent implements OnInit {
     });
   }
 
-  updatePassenger(id: any) {
-    this.router.navigate(['admin/passenger', id]);
+  updatePassenger(id: any, seatno: any) {
+    this.router.navigate(['passengerdetails/', id, seatno, this.flightNo]);
   }
 }

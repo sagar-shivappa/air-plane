@@ -1,7 +1,13 @@
 <div class="passenger-form">
-  <h2>
-    Update Passenger <b>{{ passengerForm.passengerName }}</b
+  <h2 *ngIf="passengerForm.passengerName">
+    Update Passenger
+    <b>{{ passengerForm.passengerName }}</b
     >'s Information
+  </h2>
+  <h2 *ngIf="!passengerForm.passengerName">
+    Add Passenger
+    <b>{{ passengerForm.passengerName }}</b
+    >'s Information for Seat Number - {{ seatNumber }}
   </h2>
   <form
     action="submit"

@@ -27,23 +27,26 @@
     <table class="table table-hover table-dark">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Passenger Name</th>
           <th scope="col">Seat Number</th>
+          <th scope="col">Passenger ID</th>
+          <th scope="col">Passenger Name</th>
+
           <th scope="col">Ancillary</th>
           <th></th>
         </tr>
       </thead>
       <tbody *ngFor="let passenger of passengersList">
         <tr>
+          <td>{{ passenger.seatNumber }}</td>
           <td>{{ passenger.passengerId }}</td>
           <td>{{ passenger.passengerName }}</td>
-          <td>{{ passenger.seatNumber }}</td>
           <td>{{ passenger.ancillaryService }}</td>
           <td style="text-align: center">
             <button
               class="btn btn-success"
-              (click)="updatePassenger(passenger.passengerId)"
+              (click)="
+                updatePassenger(passenger.passengerId, passenger.seatNumber)
+              "
             >
               Update
             </button>

@@ -16,6 +16,9 @@
   text-align: center;
   margin: 5px;
 }
+.grid-item:hover {
+  cursor: pointer;
+}
 .gap {
   grid-column: 3;
   grid-row: 1 / span 5;
@@ -51,6 +54,6 @@
     margin: 5%;
   }
   .seat-info {
-    display: block;                                                    
+    display: block;
   }
 }

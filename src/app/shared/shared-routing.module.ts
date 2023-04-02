@@ -1,0 +1,18 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { PassengerComponent } from '../shared/passenger/passenger.component';
+import { PassengerDetailsComponent } from './passenger-list/passenger-details.component';
+
+const routes: Routes = [
+  { path: 'passengerdetails', component: PassengerDetailsComponent },
+  {
+    path: 'passengerdetails/:id/:seatno/:flightNo',
+    component: PassengerComponent,
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class SharedRoutingModule {}

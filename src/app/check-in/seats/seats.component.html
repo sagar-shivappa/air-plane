@@ -1,12 +1,13 @@
-<div>
+<div *ngIf="seatAllocations.flightNo">
   <h3>
-    <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Check In
-    details
+    Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Check
+    In details
   </h3>
   <div class="grid-container">
     <ng-container *ngFor="let passenger of seatAllocations.passengers">
       <div class="grid-item gap"></div>
       <div
+        (click)="updateSeat(passenger.passengerId, passenger.seatNumber)"
         class="grid-item"
         [ngStyle]="{
           'background-color':
@@ -38,7 +39,7 @@
     </div>
     <div>
       <div class="grid-item1" style="background-color: #ef233c">
-        Name <sup>R</sup>
+        Name <sup>(R)</sup>
       </div>
       Seat Booked and passenger not arrived
     </div>

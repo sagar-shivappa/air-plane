@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { SharedService } from '../shared.service';
 @Component({
   selector: 'app-passenger',
   templateUrl: './passenger.component.html',
@@ -11,6 +12,8 @@ import { FormBuilder } from '@angular/forms';
 export class PassengerComponent implements OnInit {
   passengerId: any;
   passengerList: any;
+  seatNumber: any;
+  actionType: any;
   passengerForm = {
     passengerName: '',
     flightNumber: '',
@@ -24,12 +27,15 @@ export class PassengerComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     public actRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
     this.actRoute.params.subscribe((data) => {
       this.passengerId = data['id'];
+      this.passengerForm.seatNumber = this.seatNumber = data['seatno'];
+      this.passengerForm.flightNumber = this.seatNumber = data['flightNo'];
       this.http.get('assets/mock/passengers.json').subscribe((res: any) => {
         this.passengerList = res;
         this.passengerForm = res.find(
@@ -37,14 +43,16 @@ export class PassengerComponent implements OnInit {
         );
       });
     });
+
+    this.sharedService.actionTypeService.subscribe((data: any) => {
+      this.actionType = data;
+      console.log(data);
+    });
   }
 
   updatePassenger() {
-    this.passengerList.indexOf(this.appointmentForm);
-    console.log(
-      this.passengerForm,
-      this.passengerList.indexOf(this.appointmentForm)
-    );
-    this.router.navigate(['admin']);
+    this.actionType == 'checkIn'
+      ? this.router.navigate(['checkin/home'])
+      : this.router.navigate(['admin/']);
   }
 }
