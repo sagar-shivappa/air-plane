@@ -1,0 +1,55 @@
+<div class="passenger-details">
+  <div class="passenger-details-input">
+    <div>
+      <label for="flightNo">Flight Number</label>
+      <select
+        name="flightNo"
+        id="flightNo"
+        [(ngModel)]="flightNo"
+        class="form-control"
+        placeholder="-select the flight number-"
+      >
+        <!-- <option value="">--</option> -->
+        <option value="C1234">C1234</option>
+        <option value="b1345">B1345</option>
+        <option value="b1341">B1341</option>
+      </select>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="searchFlight()">Enter</button>
+    </div>
+  </div>
+  <br />
+  <div *ngIf="passengersList.length >= 1 && flightNo">
+    <h2>
+      Passengers of Flight Number <b>{{ flightNo }}</b>
+    </h2>
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Passenger Name</th>
+          <th scope="col">Seat Number</th>
+          <th scope="col">Ancillary</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let passenger of passengersList">
+        <tr>
+          <td>{{ passenger.passengerId }}</td>
+          <td>{{ passenger.passengerName }}</td>
+          <td>{{ passenger.seatNumber }}</td>
+          <td>{{ passenger.ancillaryService }}</td>
+          <td style="text-align: center">
+            <button
+              class="btn btn-success"
+              (click)="updatePassenger(passenger.passengerId)"
+            >
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
