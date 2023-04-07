@@ -9,11 +9,7 @@
     <b>{{ passengerForm.passengerName }}</b
     >'s Information for Seat Number - {{ seatNumber }}
   </h2>
-  <form
-    action="submit"
-    class="passenger-form_input"
-    (ngSubmit)="updatePassenger()"
-  >
+  <form action="submit" class="passenger-form_input">
     <div class="form-group">
       <div>
         <label for="passName">Passenger Name</label>
@@ -65,7 +61,13 @@
       </div>
       <br />
       <div>
-        <button class="btn btn-success" type="submit">Update Passenger</button>
+        <button
+          class="btn btn-success"
+          type="submit"
+          (click)="updatePassenger()"
+        >
+          Update Passenger
+        </button>
       </div>
     </div>
   </form>

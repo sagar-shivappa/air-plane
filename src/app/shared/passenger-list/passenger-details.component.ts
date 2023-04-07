@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { SharedService } from '../shared.service';
+import { Store } from '@ngrx/store';
+import { flightNumber } from '../state/passenger.action';
+import { passengerState } from '../state/passenger.state';
 
 @Component({
   selector: 'app-passenger-details',
@@ -13,9 +15,11 @@ export class PassengerDetailsComponent implements OnInit {
   flightNo: any;
   actionType: any;
   constructor(
-    private http: HttpClient,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private store: Store<{
+      passenger: passengerState;
+    }>
   ) {}
 
   ngOnInit(): void {
@@ -24,10 +28,13 @@ export class PassengerDetailsComponent implements OnInit {
       this.passengersList = data.passengers;
       console.log(data);
     });
+    this.store.select('passenger').subscribe((data) => {
+      console.log('pd', data);
+    });
   }
   searchFlight() {
-    this.http.get('assets/mock/passengers.json').subscribe((res: any) => {
-      this.passengersList = res.filter(
+    this.store.select('passenger').subscribe((res: any) => {
+      this.passengersList = res.passengers.filter(
         (i: any) => i.flightNumber === this.flightNo
       );
       this.sharedService.flightInformation({
@@ -35,6 +42,7 @@ export class PassengerDetailsComponent implements OnInit {
         passengers: this.passengersList,
       });
     });
+    this.store.dispatch(flightNumber());
   }
 
   updatePassenger(id: any, seatno: any) {
