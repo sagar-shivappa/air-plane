@@ -1,7 +1,13 @@
 <h1 class="header">
+  <i class="fa-duotone fa-jet-fighter"></i>
   Welcome to Airplane Service
   <div class="navItems">
-    <span routerLink="/checkin/home" (click)="updateType('checkIn')"
+    <span
+      routerLink="/checkin/home"
+      [ngStyle]="{
+        color: actionType == 'checkIn' ? 'red' : ''
+      }"
+      (click)="updateType('checkIn')"
       >Check-In</span
     >
     <span> | </span>
@@ -9,6 +15,9 @@
       routerLink="/admin"
       style="margin-left: 10px"
       (click)="updateType('admin')"
+      [ngStyle]="{
+        color: actionType == 'admin' ? 'red' : ''
+      }"
       >Admin</span
     >
   </div>
