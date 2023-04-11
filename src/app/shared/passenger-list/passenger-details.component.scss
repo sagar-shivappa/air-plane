@@ -8,6 +8,12 @@
     gap: 40px;
   }
 }
+.pagination {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 800px) {
   .passenger-details {
     padding: 10px;
