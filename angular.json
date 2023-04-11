@@ -68,7 +68,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "aot": true,
+
           "configurations": {
             "production": {
               "browserTarget": "airplane-app:build:production"

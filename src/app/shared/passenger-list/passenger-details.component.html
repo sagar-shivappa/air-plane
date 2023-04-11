@@ -8,15 +8,12 @@
         [(ngModel)]="flightNo"
         class="form-control"
         placeholder="-select the flight number-"
+        (change)="searchFlight()"
       >
-        <!-- <option value="">--</option> -->
         <option value="C1234">C1234</option>
         <option value="b1345">B1345</option>
         <option value="b1341">B1341</option>
       </select>
-    </div>
-    <div>
-      <button class="btn btn-primary" (click)="searchFlight()">Enter</button>
     </div>
   </div>
   <br />
@@ -35,7 +32,12 @@
           <th></th>
         </tr>
       </thead>
-      <tbody *ngFor="let passenger of passengersList">
+      <tbody
+        *ngFor="
+          let passenger of passengersList
+            | paginate : { itemsPerPage: 5, currentPage: p }
+        "
+      >
         <tr>
           <td>{{ passenger.seatNumber }}</td>
           <td>{{ passenger.passengerId }}</td>
@@ -54,5 +56,8 @@
         </tr>
       </tbody>
     </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
 </div>

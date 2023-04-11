@@ -8,9 +8,11 @@ import { SharedService } from './shared/shared.service';
 })
 export class AppComponent {
   title = 'airplane-app';
+  actionType: any = '';
   constructor(private sharedService: SharedService) {}
 
   updateType(actionType: any) {
+    this.actionType = actionType;
     this.sharedService.actionInfo(actionType);
   }
 }

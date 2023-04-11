@@ -55,8 +55,6 @@ export class PassengerComponent implements OnInit, OnDestroy {
       this.passengersSubscription = this.store
         .select('passenger')
         .subscribe((res: any) => {
-          console.log('mystore', res);
-
           this.passengerList = res.passengers;
           const exsistingPassenger = res.passengers.find(
             (i: any) => i.passengerId == this.passenger.passengerId
@@ -77,7 +75,19 @@ export class PassengerComponent implements OnInit, OnDestroy {
       console.log(data);
     });
   }
+  removeAllocation() {
+    let a = this.passengerList.findIndex(
+      (x: { passengerId: string }) =>
+        JSON.parse(x.passengerId) === this.passengerForm.passengerId
+    );
+    let b = JSON.parse(JSON.stringify(this.passengerList));
+    b.splice(a, 1);
 
+    this.store.dispatch(updatePassenger({ updatedPassenger: b }));
+    this.actionType == 'checkIn'
+      ? this.router.navigate(['checkin/home'])
+      : this.router.navigate(['admin/']);
+  }
   updatePassenger() {
     this.actionType == 'checkIn'
       ? this.router.navigate(['checkin/home'])
