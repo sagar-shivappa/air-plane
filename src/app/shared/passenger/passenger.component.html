@@ -3,7 +3,13 @@
     Update Passenger
     <b>{{ passengerForm.passengerName }}</b
     >'s Information
+    <div>
+      <button class="btn btn-danger" (click)="removeAllocation()">
+        Remove Seat Allocation
+      </button>
+    </div>
   </h2>
+
   <h2 *ngIf="!passengerForm.passengerName">
     Add Passenger
     <b>{{ passengerForm.passengerName }}</b
@@ -60,6 +66,27 @@
         </select>
       </div>
       <br />
+      <div>
+        <input
+          *ngIf="passengerForm.checkedIn"
+          type="checkbox"
+          id="arrived"
+          name="arrived"
+          value="false"
+          [(ngModel)]="passengerForm.checkedIn"
+          checked
+        />
+        <input
+          *ngIf="!passengerForm.checkedIn"
+          type="checkbox"
+          id="arrived"
+          name="arrived"
+          [(ngModel)]="passengerForm.checkedIn"
+          value="false"
+        />
+
+        <label for="arrived"> Passenger Arrived</label><br />
+      </div>
       <div>
         <button
           class="btn btn-success"
