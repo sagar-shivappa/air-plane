@@ -89,9 +89,13 @@ export class PassengerComponent implements OnInit, OnDestroy {
       : this.router.navigate(['admin/']);
   }
   updatePassenger() {
-    this.actionType == 'checkIn'
-      ? this.router.navigate(['checkin/home'])
-      : this.router.navigate(['admin/']);
+    if (this.actionType == 'checkIn') {
+      this.router.navigate(['checkin/home']);
+    } else if (this.actionType == 'admin') {
+      this.router.navigate(['admin/']);
+    } else {
+      this.router.navigate(['/']);
+    }
     if (this.passengerType == 'new') {
       this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
       this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
