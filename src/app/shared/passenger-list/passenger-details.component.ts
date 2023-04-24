@@ -31,7 +31,7 @@ export class PassengerDetailsComponent implements OnInit {
       this.passengersList = data.passengers;
     });
   }
-  ngAfterViewInit() {
+  AfterViewInit() {
     this.passengersList.paginator = this.paginator;
   }
   searchFlight() {

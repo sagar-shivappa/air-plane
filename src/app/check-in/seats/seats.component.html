@@ -11,7 +11,7 @@
         class="grid-item"
         [ngStyle]="{
           'background-color':
-            passenger.checkedIn && passenger.passengerName != 'N/A'
+            passenger.checkedIn && passenger.passengerName !== 'N/A'
               ? 'green'
               : '#ef233c',
           color: passenger.passengerName === 'N/A' ? '' : 'white'
@@ -20,11 +20,11 @@
         <div *ngIf="passenger.checkedIn">
           {{ passenger.passengerName }}
         </div>
-        <div *ngIf="!passenger.checkedIn && passenger.passengerName != 'N/A'">
+        <div *ngIf="!passenger.checkedIn && passenger.passengerName !== 'N/A'">
           {{ passenger.passengerName }}
           <sup><small style="font-size: 15px">(R)</small></sup>
         </div>
-        <div *ngIf="passenger.passengerName == 'N/A'">
+        <div *ngIf="passenger.passengerName === 'N/A'">
           {{ passenger.passengerName }}
         </div>
       </div>

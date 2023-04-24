@@ -5,7 +5,7 @@
     <span
       routerLink="/checkin/home"
       [ngStyle]="{
-        color: actionType == 'checkIn' ? 'red' : ''
+        color: actionType === 'checkIn' ? 'red' : ''
       }"
       (click)="updateType('checkIn')"
       >Check-In</span
@@ -16,7 +16,7 @@
       style="margin-left: 10px"
       (click)="updateType('admin')"
       [ngStyle]="{
-        color: actionType == 'admin' ? 'red' : ''
+        color: actionType === 'admin' ? 'red' : ''
       }"
       >Admin</span
     >
