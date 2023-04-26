@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { Store } from '@ngrx/store';
 import { flightNumber } from '../state/passenger.action';
@@ -20,21 +20,29 @@ export class PassengerDetailsComponent implements OnInit {
   constructor(
     private router: Router,
     private sharedService: SharedService,
+    public actRoute: ActivatedRoute,
     private store: Store<{
       passenger: passengerState;
     }>
   ) {}
 
   ngOnInit(): void {
-    this.sharedService.flightInfo.subscribe((data: any) => {
-      this.flightNo = data.flightNo;
-      this.passengersList = data.passengers;
+    this.actRoute.params.subscribe((data) => {
+      if (Object.keys(data).length > 0) {
+        this.flightNo = data['flightNo'];
+      } else {
+        this.sharedService.flightInfo.subscribe((data: any) => {
+          this.flightNo = data.flightNo;
+        });
+      }
+
+      this.listPassengers();
     });
   }
   AfterViewInit() {
     this.passengersList.paginator = this.paginator;
   }
-  searchFlight() {
+  listPassengers() {
     this.store.select('passenger').subscribe((res: any) => {
       this.passengersList = res.passengers.filter(
         (i: any) => i.flightNumber === this.flightNo

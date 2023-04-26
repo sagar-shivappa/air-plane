@@ -3,7 +3,7 @@
   Welcome to Airplane Service
   <div class="navItems">
     <span
-      routerLink="/checkin/home"
+      routerLink="/flights"
       [ngStyle]="{
         color: actionType === 'checkIn' ? 'red' : ''
       }"
@@ -12,7 +12,7 @@
     >
     <span> | </span>
     <span
-      routerLink="/admin"
+      routerLink="/flights"
       style="margin-left: 10px"
       (click)="updateType('admin')"
       [ngStyle]="{
