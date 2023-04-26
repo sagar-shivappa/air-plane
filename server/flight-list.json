@@ -1,0 +1,22 @@
+[
+  {
+    "flightName": "Vistara",
+    "flightCode": "b1345",
+    "departureTime": "13:00"
+  },
+  {
+    "flightName": "AirIndia",
+    "flightCode": "c1234",
+    "departureTime": "15:00"
+  },
+  {
+    "flightName": "British Airlines",
+    "flightCode": "b1341",
+    "departureTime": "19:00"
+  },
+  {
+    "flightName": "Spice jet",
+    "flightCode": "s1234",
+    "departureTime": "12:00"
+  }
+]

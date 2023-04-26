@@ -7,9 +7,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedRoutingModule } from './shared-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AvailableFlightsComponent } from './available-flights/available-flights.component';
 
 @NgModule({
-  declarations: [PassengerDetailsComponent, PassengerComponent],
+  declarations: [PassengerDetailsComponent, PassengerComponent, AvailableFlightsComponent],
   imports: [
     CommonModule,
     FormsModule,
