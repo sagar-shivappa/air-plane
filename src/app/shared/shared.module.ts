@@ -8,9 +8,15 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AvailableFlightsComponent } from './available-flights/available-flights.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [PassengerDetailsComponent, PassengerComponent, AvailableFlightsComponent],
+  declarations: [
+    PassengerDetailsComponent,
+    PassengerComponent,
+    AvailableFlightsComponent,
+    HomeComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,6 +25,6 @@ import { AvailableFlightsComponent } from './available-flights/available-flights
     MatPaginatorModule,
     NgxPaginationModule,
   ],
-  exports: [PassengerDetailsComponent, PassengerComponent],
+  exports: [PassengerDetailsComponent, PassengerComponent, HomeComponent],
 })
 export class SharedModule {}

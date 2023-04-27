@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CheckinHomeComponent } from './checkin-home/checkin-home.component';
+import { CheckinHomeComponent } from './checkin-seat-table-tab/checkin-home.component';
 import { SeatsComponent } from './seats/seats.component';
 import { PassengerComponent } from '../shared/passenger/passenger.component';
 

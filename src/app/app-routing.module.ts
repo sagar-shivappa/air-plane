@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AvailableFlightsComponent } from './shared/available-flights/available-flights.component';
+import { HomeComponent } from './shared/home/home.component';
 
 const routes: Routes = [
   { path: 'flights', component: AvailableFlightsComponent },
+  { path: 'home', component: HomeComponent },
   {
     path: 'checkin',
     loadChildren: () =>
@@ -14,6 +16,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  { path: '', component: HomeComponent },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({

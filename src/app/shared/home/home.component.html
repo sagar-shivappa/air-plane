@@ -1,0 +1,7 @@
+<div class="flight-card">
+  <div *ngFor="let option of homeOptions">
+    <div class="flight-card_item" (click)="selectedOption(option.actionType)">
+      <h2>{{ option.name }}<br /></h2>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,9 @@
   float: right;
   font-size: 25px !important;
 }
+.header h1 {
+  display: inline;
+}
 
 .navItems:hover {
   cursor: pointer;
@@ -18,8 +21,11 @@
   .header {
     width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
   }
-  .navItems {
+  .header h1 {
     display: inline;
+  }
+  .navItems {
+    display: block;
     float: unset;
     font-size: 25px !important;
   }

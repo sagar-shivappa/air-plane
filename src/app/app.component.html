@@ -1,6 +1,6 @@
-<h1 class="header">
-  <i class="fa-duotone fa-jet-fighter"></i>
-  Welcome to Airplane Service
+<header class="header">
+  <h1>Welcome to Airplane Service</h1>
+
   <div class="navItems">
     <span
       routerLink="/flights"
@@ -8,7 +8,7 @@
         color: actionType === 'checkIn' ? 'red' : ''
       }"
       (click)="updateType('checkIn')"
-      >Check-In</span
+      >AirLine Staff</span
     >
     <span> | </span>
     <span
@@ -21,6 +21,6 @@
       >Admin</span
     >
   </div>
-</h1>
+</header>
 
 <router-outlet></router-outlet>
