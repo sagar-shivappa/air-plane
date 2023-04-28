@@ -64,17 +64,26 @@
       <br />
       <div>
         <label for="ancillaryService"> Ancillary Service </label>
-        <select
+        <input
           name="ancillaryService"
           id="ancillaryService"
           class="form-control"
           [(ngModel)]="passengerForm.ancillaryService"
+        />
+      </div>
+      <br />
+      <div>
+        <label for="mealsService"> Meals Service </label>
+        <select
+          name="mealsService"
+          id="mealsService"
+          class="form-control"
+          [(ngModel)]="passengerForm.mealsService"
         >
           <option value="">--select from below--</option>
-          <option value="Grade1">Grade 1 Service</option>
-          <option value="Grade2">Grade 2 Service</option>
-          <option value="Grade3">Grade 3 Service</option>
-          <option value="Grade4">Grade 4 Service</option>
+          <option value="Grade1">Special Meals</option>
+          <option value="Grade2">Medium Meals</option>
+          <option value="Grade3">Mini Meals</option>
         </select>
       </div>
       <br />
