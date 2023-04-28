@@ -1,9 +1,9 @@
 <div class="passenger-details">
   <br />
+  <button class="btn btn-info" routerLink="/passenger/0/0/{{ flightNo }}">
+    Add New Passenger
+  </button>
   <div *ngIf="passengersList.length >= 1 && flightNo">
-    <button class="btn btn-info" routerLink="/passenger">
-      Add a Passenger
-    </button>
     <h2>
       Passengers of Flight Number <b>{{ flightNo }}</b>
     </h2>

@@ -17,6 +17,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
   seatNumber: any;
   actionType: any;
   passengerType: any;
+  selectedFlightPassengers: any;
   passengerForm = {
     passengerId: 1,
     passengerName: '',
@@ -25,6 +26,8 @@ export class PassengerComponent implements OnInit, OnDestroy {
     ancillaryService: '',
     checkedIn: false,
     id: 0,
+    wheelChair: false,
+    infant: false,
   };
   passenger = {
     passengerId: 1,
@@ -34,7 +37,10 @@ export class PassengerComponent implements OnInit, OnDestroy {
     ancillaryService: '',
     checkedIn: false,
     id: null,
+    wheelChair: false,
+    infant: false,
   };
+  errorMessage: any = '';
   passengersSubscription: Subscription | undefined;
 
   constructor(
@@ -58,6 +64,9 @@ export class PassengerComponent implements OnInit, OnDestroy {
           this.passengerList = res.passengers;
           const exsistingPassenger = res.passengers.find(
             (i: any) => i.passengerId == this.passenger.passengerId
+          );
+          this.selectedFlightPassengers = this.passengerList.filter(
+            (ele: any) => ele.flightNumber == this.passenger.flightNumber
           );
           if (!exsistingPassenger) {
             this.passengerType = 'new';
@@ -85,29 +94,47 @@ export class PassengerComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(updatePassenger({ updatedPassenger: b }));
     this.actionType == 'checkIn'
-      ? this.router.navigate(['checkin/home'])
+      ? this.router.navigate(['checkin'])
       : this.router.navigate(['admin/']);
   }
   updatePassenger() {
     if (this.passengerType == 'new') {
-      this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
-      this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
+      if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
+        this.errorMessage = `Seat Number ${this.passengerForm.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
+      } else {
+        this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
+        this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
+        this.activateRouter();
+      }
     } else {
-      let updatedPassengersList = this.passengerList.map(
-        (i: passengerinterface) => {
-          if (i.passengerId == this.passengerForm.passengerId) {
-            i = this.passengerForm;
-            return i;
-          } else {
-            return i;
+      if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
+        this.errorMessage = `Seat Number ${this.passengerForm.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
+      } else {
+        let updatedPassengersList = this.passengerList.map(
+          (i: passengerinterface) => {
+            if (i.passengerId == this.passengerForm.passengerId) {
+              i = this.passengerForm;
+              return i;
+            } else {
+              return i;
+            }
           }
-        }
-      );
+        );
 
-      this.store.dispatch(
-        updatePassenger({ updatedPassenger: updatedPassengersList })
-      );
+        this.store.dispatch(
+          updatePassenger({ updatedPassenger: updatedPassengersList })
+        );
+        this.activateRouter();
+      }
     }
+  }
+  ngOnDestroy(): void {
+    if (this.passengersSubscription) {
+      this.passengersSubscription.unsubscribe();
+    }
+  }
+
+  activateRouter() {
     if (this.actionType == 'checkIn') {
       this.router.navigate(['/checkin']);
     } else if (this.actionType == 'admin') {
@@ -115,10 +142,18 @@ export class PassengerComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate(['/']);
     }
+    this.errorMessage = '';
   }
-  ngOnDestroy(): void {
-    if (this.passengersSubscription) {
-      this.passengersSubscription.unsubscribe();
+  seatOccupied(): any {
+    let seatOcccupied = this.selectedFlightPassengers.find(
+      (ele: any) => ele.seatNumber == this.passengerForm.seatNumber
+    );
+    if (
+      this.passengerType == 'update' &&
+      JSON.stringify(seatOcccupied) != JSON.stringify(this.passengerForm)
+    ) {
+      return false;
     }
+    return seatOcccupied;
   }
 }

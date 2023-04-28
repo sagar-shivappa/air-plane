@@ -1,21 +1,30 @@
 <div class="passenger-form">
-  <h2 *ngIf="passengerForm.passengerName">
-    Update Passenger
-    <b>{{ passengerForm.passengerName }}</b
-    >'s Information
-    <div>
-      <hr />
-      <button class="btn btn-danger" (click)="removeAllocation()">
-        Remove Seat Allocation
-      </button>
-    </div>
-  </h2>
+  <div class="passenger-form_head">
+    <h2 *ngIf="passengerForm.passengerName">
+      Update Passenger
+      <b>{{ passengerForm.passengerName }}</b
+      >'s Information
+      <div>
+        <hr />
+        <button class="btn btn-danger" (click)="removeAllocation()">
+          Remove Seat Allocation
+        </button>
+      </div>
+    </h2>
 
-  <h2 *ngIf="!passengerForm.passengerName">
-    Add Passenger
-    <b>{{ passengerForm.passengerName }}</b
-    >'s Information for Seat Number - {{ passengerForm.seatNumber }}
-  </h2>
+    <h2 *ngIf="!passengerForm.passengerName">
+      Add Passenger
+      <b>{{ passengerForm.passengerName }}</b
+      >'s Information for Seat Number - {{ passengerForm.seatNumber }}
+    </h2>
+    <div
+      *ngIf="errorMessage.length > 0"
+      class="alert alert-danger"
+      role="alert"
+    >
+      {{ errorMessage }}
+    </div>
+  </div>
 
   <form action="submit" class="passenger-form_input">
     <div class="form-group">
@@ -44,7 +53,7 @@
       <div>
         <label for="seatNumber"> Seat Number </label>
         <input
-          type="text"
+          type="number"
           id="seatNumber"
           name="seatNumber"
           class="form-control"
@@ -69,27 +78,72 @@
         </select>
       </div>
       <br />
-      <div>
-        <input
-          *ngIf="passengerForm.checkedIn"
-          type="checkbox"
-          id="arrived"
-          name="arrived"
-          value="false"
-          [(ngModel)]="passengerForm.checkedIn"
-          checked
-        />
-        <input
-          *ngIf="!passengerForm.checkedIn"
-          type="checkbox"
-          id="arrived"
-          name="arrived"
-          [(ngModel)]="passengerForm.checkedIn"
-          value="false"
-        />
+      <div class="passenger-form_input_extras">
+        <div>
+          <input
+            *ngIf="passengerForm.checkedIn"
+            type="checkbox"
+            id="arrived"
+            name="arrived"
+            value="false"
+            [(ngModel)]="passengerForm.checkedIn"
+            checked
+          />
+          <input
+            *ngIf="!passengerForm.checkedIn"
+            type="checkbox"
+            id="arrived"
+            name="arrived"
+            [(ngModel)]="passengerForm.checkedIn"
+            value="false"
+          />
 
-        <label for="arrived"> Passenger Arrived</label><br />
+          <label for="arrived"> Passenger Arrived</label><br />
+        </div>
+        <div>
+          <input
+            *ngIf="passengerForm.wheelChair"
+            type="checkbox"
+            id="wheelChair"
+            name="wheelChair"
+            value="false"
+            [(ngModel)]="passengerForm.wheelChair"
+            checked
+          />
+          <input
+            *ngIf="!passengerForm.wheelChair"
+            type="checkbox"
+            id="wheelChair"
+            name="wheelChair"
+            [(ngModel)]="passengerForm.wheelChair"
+            value="false"
+          />
+
+          <label for="arrived"> Wheel Chair Required?</label><br />
+        </div>
+        <div>
+          <input
+            *ngIf="passengerForm.infant"
+            type="checkbox"
+            id="infant"
+            name="infant"
+            value="false"
+            [(ngModel)]="passengerForm.infant"
+            checked
+          />
+          <input
+            *ngIf="!passengerForm.infant"
+            type="checkbox"
+            id="infant"
+            name="infant"
+            [(ngModel)]="passengerForm.infant"
+            value="false"
+          />
+
+          <label for="arrived">Is Passenger an Infant</label><br />
+        </div>
       </div>
+
       <div>
         <button
           class="btn btn-success"
