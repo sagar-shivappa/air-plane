@@ -1,8 +1,27 @@
 <div class="passenger-details">
   <br />
-  <button class="btn btn-info" routerLink="/passenger/0/0/{{ flightNo }}">
-    Add New Passenger
-  </button>
+  <div class="passenger-details_feature">
+    <button class="btn btn-info" routerLink="/passenger/0/0/{{ flightNo }}">
+      Add New Passenger
+    </button>
+    <div>
+      <label for="filterOption"> Filter By </label>
+      <select
+        name="filterOption"
+        id="filterOption"
+        class="form-control"
+        [(ngModel)]="filterBy"
+        (change)="applyfilter()"
+      >
+        <option value="">-Remove Filters-</option>
+        <option value="checkIn">Checked In</option>
+        <option value="notCheckIn">Not Checked In</option>
+        <option value="wheelChair">Wheel Chair Required</option>
+        <option value="infant">Infant</option>
+      </select>
+    </div>
+  </div>
+
   <div *ngIf="passengersList.length >= 1 && flightNo">
     <h2>
       Passengers of Flight Number <b>{{ flightNo }}</b>
@@ -11,7 +30,6 @@
       <thead>
         <tr>
           <th scope="col">Seat Number</th>
-          <th scope="col">Passenger ID</th>
           <th scope="col">Passenger Name</th>
 
           <th scope="col">Ancillary</th>
@@ -26,7 +44,6 @@
       >
         <tr>
           <td>{{ passenger.seatNumber }}</td>
-          <td>{{ passenger.passengerId }}</td>
           <td>{{ passenger.passengerName }}</td>
           <td>{{ passenger.ancillaryService }}</td>
           <td style="text-align: center">

@@ -13,8 +13,10 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class PassengerDetailsComponent implements OnInit {
   passengersList: any = [];
+  tempPassengersList: any;
   flightNo: any;
   actionType: any;
+  filterBy: any;
   p = 1;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
@@ -37,7 +39,7 @@ export class PassengerDetailsComponent implements OnInit {
       this.sharedService.flightInfo.subscribe((data: any) => {
         this.flightNo = data.flightNo;
       });
-      this.passengersList = res.passengers.filter(
+      this.tempPassengersList = this.passengersList = res.passengers.filter(
         (i: any) => i.flightNumber === this.flightNo
       );
       this.sharedService.flightInformation({
@@ -50,5 +52,25 @@ export class PassengerDetailsComponent implements OnInit {
 
   updatePassenger(id: any, seatno: any) {
     this.router.navigate(['passenger/', id, seatno, this.flightNo]);
+  }
+  applyfilter() {
+    this.passengersList = this.tempPassengersList;
+    if (this.filterBy == 'checkIn') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.checkedIn == true;
+      });
+    } else if (this.filterBy == 'notCheckIn') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.checkedIn == false;
+      });
+    } else if (this.filterBy == 'infant') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.infant == true;
+      });
+    } else if (this.filterBy == 'wheelChair') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.wheelChair === true;
+      });
+    }
   }
 }
