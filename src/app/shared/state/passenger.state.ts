@@ -20,6 +20,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 1,
       ancillaryService: 'Grade1',
       checkedIn: true,
+      wheelChair: true,
+      infant: false,
     },
     {
       passengerId: 2,
@@ -28,6 +30,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 15,
       ancillaryService: 'Grade2',
       checkedIn: true,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 3,
@@ -36,6 +40,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 16,
       ancillaryService: 'Grade3',
       checkedIn: true,
+      wheelChair: true,
+      infant: false,
     },
 
     {
@@ -45,6 +51,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 10,
       ancillaryService: 'Grade1',
       checkedIn: false,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 5,
@@ -53,6 +61,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 16,
       ancillaryService: 'Grade2',
       checkedIn: true,
+      wheelChair: true,
+      infant: false,
     },
     {
       passengerId: 6,
@@ -61,6 +71,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 8,
       ancillaryService: 'Grade1',
       checkedIn: false,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 7,
@@ -69,6 +81,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 19,
       ancillaryService: 'Grade5',
       checkedIn: true,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 8,
@@ -77,6 +91,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 11,
       ancillaryService: 'Grade2',
       checkedIn: true,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 9,
@@ -85,6 +101,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 10,
       ancillaryService: 'Grade2',
       checkedIn: true,
+      wheelChair: false,
+      infant: true,
     },
     {
       passengerId: 10,
@@ -93,6 +111,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 19,
       ancillaryService: 'Grade2',
       checkedIn: false,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 11,
@@ -101,6 +121,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 5,
       ancillaryService: 'Grade2',
       checkedIn: true,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 12,
@@ -109,6 +131,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 17,
       ancillaryService: 'Grade3',
       checkedIn: true,
+      wheelChair: true,
+      infant: false,
     },
     {
       passengerId: 13,
@@ -117,6 +141,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 18,
       ancillaryService: 'Grade3',
       checkedIn: false,
+      wheelChair: false,
+      infant: true,
     },
     {
       passengerId: 14,
@@ -125,6 +151,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 19,
       ancillaryService: 'Grade3',
       checkedIn: true,
+      wheelChair: false,
+      infant: false,
     },
     {
       passengerId: 15,
@@ -133,6 +161,8 @@ export const passengerInitialState: passengerState = {
       seatNumber: 11,
       ancillaryService: 'Grade3',
       checkedIn: false,
+      wheelChair: false,
+      infant: false,
     },
   ],
   flightNumber: '0',

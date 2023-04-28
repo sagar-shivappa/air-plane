@@ -41,7 +41,7 @@ export class SeatsComponent implements OnInit {
   }
   updateSeat(id: any, seatno: any) {
     this.router.navigate([
-      'passengerdetails/',
+      'passenger/',
       id,
       seatno,
       this.seatAllocations.flightNo,

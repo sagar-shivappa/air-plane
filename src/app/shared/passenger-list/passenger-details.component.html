@@ -1,23 +1,9 @@
 <div class="passenger-details">
-  <!-- <div class="passenger-details-input">
-    <div>
-      <label for="flightNo">Flight Number</label>
-      <select
-        name="flightNo"
-        id="flightNo"
-        [(ngModel)]="flightNo"
-        class="form-control"
-        placeholder="-select the flight number-"
-        (change)="searchFlight()"
-      >
-        <option value="C1234">C1234</option>
-        <option value="b1345">B1345</option>
-        <option value="b1341">B1341</option>
-      </select>
-    </div>
-  </div> -->
   <br />
   <div *ngIf="passengersList.length >= 1 && flightNo">
+    <button class="btn btn-info" routerLink="/passenger">
+      Add a Passenger
+    </button>
     <h2>
       Passengers of Flight Number <b>{{ flightNo }}</b>
     </h2>

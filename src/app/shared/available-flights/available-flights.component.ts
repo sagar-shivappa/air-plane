@@ -10,6 +10,7 @@ import { SharedService } from '../shared.service';
 })
 export class AvailableFlightsComponent implements OnInit {
   flightsList: any;
+  actionType: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -21,11 +22,19 @@ export class AvailableFlightsComponent implements OnInit {
       this.flightsList = data;
       console.log(this.flightsList);
     });
+    this.sharedService.actionTypeService.subscribe((data) => {
+      this.actionType = data;
+    });
   }
   flightSelected(flightCode: any) {
     this.sharedService.flightInformation({
       flightNo: flightCode,
+      passengers: [],
     });
-    this.router.navigate(['/passengerdetails', flightCode]);
+    if (this.actionType == 'admin') {
+      this.router.navigate(['/passengerdetails']);
+    } else {
+      this.router.navigate(['/checkin']);
+    }
   }
 }

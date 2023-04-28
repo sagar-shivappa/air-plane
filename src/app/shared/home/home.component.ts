@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 
   selectedOption(actionType: any) {
     this.sharedService.actionInfo(actionType);
-    this.router.navigate(['flights']);
+    actionType == 'checkIn'
+      ? this.router.navigate(['checkin/home'])
+      : this.router.navigate(['flights']);
   }
 }

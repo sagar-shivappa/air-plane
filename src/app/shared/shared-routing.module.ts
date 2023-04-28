@@ -7,7 +7,11 @@ const routes: Routes = [
   { path: 'passengerdetails/:flightNo', component: PassengerDetailsComponent },
   { path: 'passengerdetails', component: PassengerDetailsComponent },
   {
-    path: 'passengerdetails/:id/:seatno/:flightNo',
+    path: 'passenger/:id/:seatno/:flightNo',
+    component: PassengerComponent,
+  },
+  {
+    path: 'passenger',
     component: PassengerComponent,
   },
 ];

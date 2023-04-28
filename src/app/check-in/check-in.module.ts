@@ -5,9 +5,10 @@ import { CheckInRoutingModule } from './check-in-routing.module';
 import { CheckinHomeComponent } from './checkin-seat-table-tab/checkin-home.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AirlineStaffHomeComponent } from './airline-staff-home/airline-staff-home.component';
 
 @NgModule({
-  declarations: [SeatsComponent, CheckinHomeComponent],
+  declarations: [SeatsComponent, CheckinHomeComponent, AirlineStaffHomeComponent],
   imports: [CommonModule, CheckInRoutingModule, SharedModule, MatTabsModule],
 })
 export class CheckInModule {}

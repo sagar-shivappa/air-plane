@@ -27,23 +27,16 @@ export class PassengerDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.actRoute.params.subscribe((data) => {
-      if (Object.keys(data).length > 0) {
-        this.flightNo = data['flightNo'];
-      } else {
-        this.sharedService.flightInfo.subscribe((data: any) => {
-          this.flightNo = data.flightNo;
-        });
-      }
-
-      this.listPassengers();
-    });
+    this.listPassengers();
   }
   AfterViewInit() {
     this.passengersList.paginator = this.paginator;
   }
   listPassengers() {
     this.store.select('passenger').subscribe((res: any) => {
+      this.sharedService.flightInfo.subscribe((data: any) => {
+        this.flightNo = data.flightNo;
+      });
       this.passengersList = res.passengers.filter(
         (i: any) => i.flightNumber === this.flightNo
       );
@@ -56,6 +49,6 @@ export class PassengerDetailsComponent implements OnInit {
   }
 
   updatePassenger(id: any, seatno: any) {
-    this.router.navigate(['passengerdetails/', id, seatno, this.flightNo]);
+    this.router.navigate(['passenger/', id, seatno, this.flightNo]);
   }
 }
