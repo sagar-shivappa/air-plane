@@ -29,6 +29,9 @@ export class PassengerComponent implements OnInit, OnDestroy {
     id: 0,
     wheelChair: false,
     infant: false,
+    passportNumber: '',
+    address: '',
+    dateOfBirth: '',
   };
   passenger = {
     passengerId: 1,
@@ -41,6 +44,9 @@ export class PassengerComponent implements OnInit, OnDestroy {
     id: null,
     wheelChair: false,
     infant: false,
+    passportNumber: '',
+    address: '',
+    dateOfBirth: '',
   };
   errorMessage: any = '';
   passengersSubscription: Subscription | undefined;

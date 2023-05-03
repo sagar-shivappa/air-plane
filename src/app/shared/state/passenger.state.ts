@@ -23,6 +23,9 @@ export const passengerInitialState: passengerState = {
       wheelChair: true,
       infant: false,
       mealsService: 'Grade1',
+      passportNumber: 'MYUEPS589',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 2,
@@ -34,6 +37,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: false,
       infant: false,
+      passportNumber: 'GfdfYUEPS589',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 3,
@@ -45,6 +51,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: true,
       infant: false,
+      passportNumber: 'HYUG^&*&*',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
 
     {
@@ -57,6 +66,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: false,
       wheelChair: false,
       infant: false,
+      passportNumber: '',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 5,
@@ -68,6 +80,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: true,
       infant: false,
+      passportNumber: '',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 6,
@@ -79,6 +94,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: false,
       wheelChair: false,
       infant: false,
+      passportNumber: 'tYUVEPS589',
+      address: '',
+      dateOfBirth: '',
     },
     {
       passengerId: 7,
@@ -90,6 +108,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: false,
       infant: false,
+      passportNumber: '',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 8,
@@ -101,6 +122,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: false,
       infant: false,
+      passportNumber: 'Ug^*^**&6',
+      address: '',
+      dateOfBirth: '',
     },
     {
       passengerId: 9,
@@ -112,6 +136,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: false,
       infant: true,
+      passportNumber: 'YUJG^%^&&*',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '',
     },
     {
       passengerId: 10,
@@ -123,6 +150,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: false,
       wheelChair: false,
       infant: false,
+      passportNumber: '',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 11,
@@ -134,6 +164,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: false,
       infant: false,
+      passportNumber: 'GYUEPS589',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 12,
@@ -145,6 +178,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: true,
       infant: false,
+      passportNumber: 'GYUEPS589',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 13,
@@ -156,6 +192,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: false,
       wheelChair: false,
       infant: true,
+      passportNumber: 'GYUEPS589',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '',
     },
     {
       passengerId: 14,
@@ -167,6 +206,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: true,
       wheelChair: false,
       infant: false,
+      passportNumber: 'KUTYV7878',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '20-06-1998',
     },
     {
       passengerId: 15,
@@ -178,6 +220,9 @@ export const passengerInitialState: passengerState = {
       checkedIn: false,
       wheelChair: false,
       infant: false,
+      passportNumber: 'GYUEPS589',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '',
     },
   ],
   flightNumber: '0',

@@ -4,7 +4,7 @@
     <button class="btn btn-info" routerLink="/passenger/0/0/{{ flightNo }}">
       Add New Passenger
     </button>
-    <div>
+    <div *ngIf="actionType == 'checkIn'">
       <label for="filterOption"> Filter By </label>
       <select
         name="filterOption"
@@ -18,6 +18,21 @@
         <option value="notCheckIn">Not Checked In</option>
         <option value="wheelChair">Wheel Chair Required</option>
         <option value="infant">Infant</option>
+      </select>
+    </div>
+    <div *ngIf="actionType == 'admin'">
+      <label for="filterOption"> Filter By </label>
+      <select
+        name="filterOption"
+        id="filterOption"
+        class="form-control"
+        [(ngModel)]="filterBy"
+        (change)="applyfilter()"
+      >
+        <option value="">-Remove Filters-</option>
+        <option value="missPass">Missing Passport</option>
+        <option value="missAdd">Missing Address</option>
+        <option value="missDob">Missing Date of Birth</option>
       </select>
     </div>
   </div>

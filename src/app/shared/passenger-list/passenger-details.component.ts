@@ -29,6 +29,9 @@ export class PassengerDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.sharedService.actionTypeService.subscribe((data: any) => {
+      this.actionType = data;
+    });
     this.listPassengers();
   }
   AfterViewInit() {
@@ -70,6 +73,18 @@ export class PassengerDetailsComponent implements OnInit {
     } else if (this.filterBy == 'wheelChair') {
       this.passengersList = this.passengersList.filter((data: any) => {
         return data.wheelChair === true;
+      });
+    } else if (this.filterBy == 'missPass') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.passportNumber === '';
+      });
+    } else if (this.filterBy == 'missAdd') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.address === '';
+      });
+    } else if (this.filterBy == 'missDob') {
+      this.passengersList = this.passengersList.filter((data: any) => {
+        return data.dateOfBirth === '';
       });
     }
   }

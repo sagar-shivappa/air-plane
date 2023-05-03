@@ -28,65 +28,109 @@
 
   <form action="submit" class="passenger-form_input">
     <div class="form-group">
-      <div>
-        <label for="passName">Passenger Name</label>
-        <input
-          type="text"
-          id="passName"
-          name="passengerName"
-          class="form-control"
-          [(ngModel)]="passengerForm.passengerName"
-        />
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <label for="passName">Passenger Name</label>
+            <input
+              type="text"
+              id="passName"
+              name="passengerName"
+              class="form-control"
+              [(ngModel)]="passengerForm.passengerName"
+            />
+          </div>
+
+          <br />
+          <div>
+            <label for="dob">Date of Birth</label>
+            <input
+              type="date"
+              id="dob"
+              name="dob"
+              class="form-control"
+              [(ngModel)]="passengerForm.dateOfBirth"
+            />
+          </div>
+
+          <br />
+          <div>
+            <label for="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              class="form-control"
+              [(ngModel)]="passengerForm.address"
+            />
+          </div>
+
+          <br />
+          <div>
+            <label for="panNumber">Passport Number</label>
+            <input
+              type="text"
+              id="panNumber"
+              name="panNumber"
+              class="form-control"
+              [(ngModel)]="passengerForm.passportNumber"
+            />
+          </div>
+          <br />
+        </div>
+        <div class="col-md-6">
+          <div>
+            <label for="flightNumber"> Flight Number </label>
+            <input
+              type="text"
+              id="flightNumber"
+              name="flightNumber"
+              class="form-control"
+              readonly
+              [(ngModel)]="passengerForm.flightNumber"
+            />
+          </div>
+          <br />
+          <div>
+            <label for="seatNumber"> Seat Number </label>
+            <input
+              type="number"
+              id="seatNumber"
+              name="seatNumber"
+              class="form-control"
+              max="20"
+              [(ngModel)]="passengerForm.seatNumber"
+            />
+          </div>
+          <br />
+          <div>
+            <label for="ancillaryService"> Ancillary Service </label>
+            <input
+              name="ancillaryService"
+              id="ancillaryService"
+              class="form-control"
+              [(ngModel)]="passengerForm.ancillaryService"
+            />
+          </div>
+          <br />
+          <div>
+            <label for="mealsService"> Meals Service </label>
+            <select
+              name="mealsService"
+              id="mealsService"
+              class="form-control"
+              [(ngModel)]="passengerForm.mealsService"
+            >
+              <option value="">--select from below--</option>
+              <option value="Grade1">Special Meals</option>
+              <option value="Grade2">Medium Meals</option>
+              <option value="Grade3">Mini Meals</option>
+            </select>
+          </div>
+          <br />
+        </div>
       </div>
-      <br />
-      <div>
-        <label for="flightNumber"> Flight Number </label>
-        <input
-          type="text"
-          id="flightNumber"
-          name="flightNumber"
-          class="form-control"
-          [(ngModel)]="passengerForm.flightNumber"
-        />
-      </div>
-      <br />
-      <div>
-        <label for="seatNumber"> Seat Number </label>
-        <input
-          type="number"
-          id="seatNumber"
-          name="seatNumber"
-          class="form-control"
-          max="20"
-          [(ngModel)]="passengerForm.seatNumber"
-        />
-      </div>
-      <br />
-      <div>
-        <label for="ancillaryService"> Ancillary Service </label>
-        <input
-          name="ancillaryService"
-          id="ancillaryService"
-          class="form-control"
-          [(ngModel)]="passengerForm.ancillaryService"
-        />
-      </div>
-      <br />
-      <div>
-        <label for="mealsService"> Meals Service </label>
-        <select
-          name="mealsService"
-          id="mealsService"
-          class="form-control"
-          [(ngModel)]="passengerForm.mealsService"
-        >
-          <option value="">--select from below--</option>
-          <option value="Grade1">Special Meals</option>
-          <option value="Grade2">Medium Meals</option>
-          <option value="Grade3">Mini Meals</option>
-        </select>
-      </div>
-      <br />
+
       <div class="passenger-form_input_extras">
         <div>
           <input
