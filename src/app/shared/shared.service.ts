@@ -8,6 +8,8 @@ export class SharedService {
   flightInfo = this.flightDetails.asObservable();
   private actionType = new BehaviorSubject('');
   actionTypeService = this.actionType.asObservable();
+  private checkInType = new BehaviorSubject('');
+  $checkInType = this.checkInType.asObservable();
 
   constructor() {}
 
@@ -17,5 +19,9 @@ export class SharedService {
 
   actionInfo(actionType: any) {
     this.actionType.next(actionType);
+  }
+
+  updateCheckInType(type: any) {
+    this.checkInType.next(type);
   }
 }

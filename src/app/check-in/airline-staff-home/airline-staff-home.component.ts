@@ -16,6 +16,7 @@ export class AirlineStaffHomeComponent implements OnInit {
 
   ngOnInit(): void {}
   selectedOption(actionType: any) {
+    this.sharedService.updateCheckInType(actionType);
     this.router.navigate(['flights']);
   }
 }

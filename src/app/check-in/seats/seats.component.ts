@@ -9,9 +9,13 @@ import { SharedService } from 'src/app/shared/shared.service';
 })
 export class SeatsComponent implements OnInit {
   public seatAllocations: any;
+  checkInType: any;
   constructor(private sharedService: SharedService, private router: Router) {}
 
   ngOnInit(): void {
+    this.sharedService.$checkInType.subscribe((type: any) => {
+      this.checkInType = type;
+    });
     this.sharedService.flightInfo.subscribe((data: any) => {
       this.seatAllocations = data;
       this.mapSeats(data);

@@ -3,49 +3,106 @@
     Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Check
     In details
   </h3>
-  <div class="grid-container">
-    <ng-container *ngFor="let passenger of seatAllocations.passengers">
-      <div class="grid-item gap"></div>
-      <div
-        (click)="updateSeat(passenger.passengerId, passenger.seatNumber)"
-        class="grid-item"
-        [ngStyle]="{
-          'background-color':
-            passenger.checkedIn && passenger.passengerName !== 'N/A'
-              ? 'green'
-              : '#ef233c',
-          color: passenger.passengerName === 'N/A' ? '' : 'white'
-        }"
-      >
-        <div *ngIf="passenger.checkedIn">
-          {{ passenger.passengerName }}
+  <div *ngIf="checkInType == 'flight-checkIn'">
+    <div class="grid-container">
+      <ng-container *ngFor="let passenger of seatAllocations.passengers">
+        <div class="grid-item gap"></div>
+        <div
+          (click)="updateSeat(passenger.passengerId, passenger.seatNumber)"
+          class="grid-item"
+          [ngStyle]="{
+            'background-color':
+              passenger.checkedIn && passenger.passengerName !== 'N/A'
+                ? 'green'
+                : '#ef233c',
+            color: passenger.passengerName === 'N/A' ? '' : 'white'
+          }"
+        >
+          <div *ngIf="passenger.checkedIn">
+            {{ passenger.passengerName }}
+          </div>
+          <div
+            *ngIf="!passenger.checkedIn && passenger.passengerName !== 'N/A'"
+          >
+            {{ passenger.passengerName }}
+            <sup><small style="font-size: 15px">(R)</small></sup>
+          </div>
+          <div *ngIf="passenger.passengerName === 'N/A'">
+            {{ passenger.passengerName }}
+          </div>
         </div>
-        <div *ngIf="!passenger.checkedIn && passenger.passengerName !== 'N/A'">
-          {{ passenger.passengerName }}
-          <sup><small style="font-size: 15px">(R)</small></sup>
+      </ng-container>
+    </div>
+    <div class="seat-info">
+      <div>
+        <div class="grid-item1" style="background-color: #ef233c; color: black">
+          N/A
         </div>
-        <div *ngIf="passenger.passengerName === 'N/A'">
-          {{ passenger.passengerName }}
-        </div>
+        <span>No passenger Expected</span>
       </div>
-    </ng-container>
+      <div>
+        <div class="grid-item1" style="background-color: #ef233c">
+          Name <sup>(R)</sup>
+        </div>
+        Seat Booked and passenger not arrived
+      </div>
+      <div>
+        <div class="grid-item1" style="background-color: green">Booked</div>
+        Seat Booked and passenger arrived
+      </div>
+    </div>
   </div>
-  <div class="seat-info">
-    <div>
-      <div class="grid-item1" style="background-color: #ef233c; color: black">
-        N/A
-      </div>
-      <span>No passenger Expected</span>
+  <div *ngIf="checkInType == 'inflight'">
+    <div class="grid-container">
+      <ng-container *ngFor="let passenger of seatAllocations.passengers">
+        <div class="grid-item gap"></div>
+        <div
+          (click)="updateSeat(passenger.passengerId, passenger.seatNumber)"
+          class="grid-item"
+          [ngStyle]="{
+            'background-color':
+              passenger.mealsService == 'Grade1'
+                ? '#ffb703'
+                : passenger.mealsService == 'Grade2'
+                ? '#cb997e'
+                : passenger.mealsService == 'Grade3'
+                ? '#ce4257'
+                : '',
+
+            color: passenger.passengerName === 'N/A' ? '' : 'white'
+          }"
+        >
+          <div>
+            {{ passenger.passengerName }}
+          </div>
+          <!-- <div
+            *ngIf="!passenger.checkedIn && passenger.passengerName !== 'N/A'"
+          >
+            {{ passenger.passengerName }}
+            <sup><small style="font-size: 15px">(R)</small></sup>
+          </div>
+          <div *ngIf="passenger.passengerName === 'N/A'">
+            {{ passenger.passengerName }}
+          </div> -->
+        </div>
+      </ng-container>
     </div>
-    <div>
-      <div class="grid-item1" style="background-color: #ef233c">
-        Name <sup>(R)</sup>
+    <div class="seat-info">
+      <div>
+        <div
+          class="grid-item1"
+          style="background-color: #ffb703; color: black"
+        ></div>
+        <span>Special Meals</span>
       </div>
-      Seat Booked and passenger not arrived
-    </div>
-    <div>
-      <div class="grid-item1" style="background-color: green">Booked</div>
-      Seat Booked and passenger arrived
+      <div>
+        <div class="grid-item1" style="background-color: #cb997e"></div>
+        Medium Meals
+      </div>
+      <div>
+        <div class="grid-item1" style="background-color: #ce4257"></div>
+        Mini Meals
+      </div>
     </div>
   </div>
 </div>
