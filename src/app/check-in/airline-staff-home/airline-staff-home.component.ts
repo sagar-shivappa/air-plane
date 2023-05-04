@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.service';
 
@@ -7,7 +7,7 @@ import { SharedService } from 'src/app/shared/shared.service';
   templateUrl: './airline-staff-home.component.html',
   styleUrls: ['./airline-staff-home.component.scss'],
 })
-export class AirlineStaffHomeComponent implements OnInit {
+export class AirlineStaffHomeComponent {
   airlineOptions: any = [
     {
       name: 'Check In',
@@ -24,7 +24,6 @@ export class AirlineStaffHomeComponent implements OnInit {
   ];
   constructor(private sharedService: SharedService, private router: Router) {}
 
-  ngOnInit(): void {}
   selectedOption(actionType: any) {
     this.sharedService.updateCheckInType(actionType);
     this.router.navigate(['flights']);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   homeOptions: any = [
     {
       name: 'AirLine Staff',
@@ -23,8 +23,6 @@ export class HomeComponent implements OnInit {
     },
   ];
   constructor(private sharedService: SharedService, private router: Router) {}
-
-  ngOnInit(): void {}
 
   selectedOption(actionType: any) {
     this.sharedService.actionInfo(actionType);

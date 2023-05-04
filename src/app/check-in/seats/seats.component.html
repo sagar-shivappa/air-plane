@@ -1,5 +1,5 @@
 <div *ngIf="seatAllocations.flightNo">
-  <div *ngIf="checkInType == 'flight-checkIn'">
+  <div *ngIf="checkInType === 'flight-checkIn'">
     <h3>
       Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Check
       In details
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="checkInType == 'inflight'">
+  <div *ngIf="checkInType === 'inflight'">
     <h3>
       Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Meals
       Preferences
@@ -65,11 +65,11 @@
           class="grid-item"
           [ngStyle]="{
             'background-color':
-              passenger.mealsService == 'Grade1'
+              passenger.mealsService === 'Grade1'
                 ? '#ffb703'
-                : passenger.mealsService == 'Grade2'
+                : passenger.mealsService === 'Grade2'
                 ? '#cb997e'
-                : passenger.mealsService == 'Grade3'
+                : passenger.mealsService === 'Grade3'
                 ? '#ce4257'
                 : '',
 
