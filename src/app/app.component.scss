@@ -4,6 +4,13 @@
   background-color: #3b5ee3;
   padding: 20px;
   margin: 0px;
+  &_flight {
+    float: left;
+    font-size: 35px;
+  }
+  &_flight:hover {
+    cursor: pointer;
+  }
 }
 .navItems {
   display: inline;

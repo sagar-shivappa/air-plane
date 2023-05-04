@@ -1,7 +1,10 @@
 <div class="flight-card">
   <div *ngFor="let option of airlineOptions">
-    <div class="flight-card_item" (click)="selectedOption(option.actionType)">
-      <h2>{{ option.name }}<br /></h2>
-    </div>
+    <img
+      class="flight-card_item"
+      (click)="selectedOption(option.actionType)"
+      src="{{ option.imgPath }}"
+    />
+    <h2>{{ option.name }}<br /></h2>
   </div>
 </div>

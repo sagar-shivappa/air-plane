@@ -9,8 +9,18 @@ import { SharedService } from 'src/app/shared/shared.service';
 })
 export class AirlineStaffHomeComponent implements OnInit {
   airlineOptions: any = [
-    { name: 'Check In', actionType: 'flight-checkIn' },
-    { name: 'In Flight', actionType: 'inflight' },
+    {
+      name: 'Check In',
+      actionType: 'flight-checkIn',
+      imgPath:
+        'https://i.pinimg.com/originals/a7/c2/a2/a7c2a20c39c1305312fbfff428db7aff.jpg',
+    },
+    {
+      name: 'In Flight',
+      actionType: 'inflight',
+      imgPath:
+        'https://cdn.businesstraveller.com/wp-content/uploads/2020/03/Vietnam-Airlines-In-flight-service-on-South-Korean-routes-over-coronavirus-outbreak.jpg',
+    },
   ];
   constructor(private sharedService: SharedService, private router: Router) {}
 

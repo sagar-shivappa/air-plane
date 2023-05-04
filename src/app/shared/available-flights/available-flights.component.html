@@ -1,10 +1,13 @@
 <div class="flight-card">
   <div *ngFor="let flight of flightsList">
-    <div class="flight-card_item" (click)="flightSelected(flight.flightCode)">
-      <h2>
-        {{ flight.flightName }}<br />
-        Code -{{ flight.flightCode }}
-      </h2>
-    </div>
+    <img
+      class="flight-card_item"
+      (click)="flightSelected(flight.flightCode)"
+      src="{{ flight.imgPath }}"
+    />
+    <h2>
+      {{ flight.flightName }}<br />
+      Code -{{ flight.flightCode }}
+    </h2>
   </div>
 </div>
