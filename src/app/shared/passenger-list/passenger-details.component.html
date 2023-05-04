@@ -4,6 +4,11 @@
     <button class="btn btn-info" routerLink="/passenger/0/0/{{ flightNo }}">
       Add New Passenger
     </button>
+    <div *ngIf="passengersList.length == 0">
+      <h2>
+        No passenger's found for Flight <b>{{ flightNo }}</b>
+      </h2>
+    </div>
     <div *ngIf="actionType == 'checkIn'">
       <label for="filterOption"> Filter By </label>
       <select

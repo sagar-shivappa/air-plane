@@ -1,9 +1,9 @@
 <div *ngIf="seatAllocations.flightNo">
-  <h3>
-    Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Check
-    In details
-  </h3>
   <div *ngIf="checkInType == 'flight-checkIn'">
+    <h3>
+      Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Check
+      In details
+    </h3>
     <div class="grid-container">
       <ng-container *ngFor="let passenger of seatAllocations.passengers">
         <div class="grid-item gap"></div>
@@ -53,6 +53,10 @@
     </div>
   </div>
   <div *ngIf="checkInType == 'inflight'">
+    <h3>
+      Flight <b>{{ seatAllocations.flightNo | uppercase }}</b> Passenger's Meals
+      Preferences
+    </h3>
     <div class="grid-container">
       <ng-container *ngFor="let passenger of seatAllocations.passengers">
         <div class="grid-item gap"></div>
@@ -75,15 +79,6 @@
           <div>
             {{ passenger.passengerName }}
           </div>
-          <!-- <div
-            *ngIf="!passenger.checkedIn && passenger.passengerName !== 'N/A'"
-          >
-            {{ passenger.passengerName }}
-            <sup><small style="font-size: 15px">(R)</small></sup>
-          </div>
-          <div *ngIf="passenger.passengerName === 'N/A'">
-            {{ passenger.passengerName }}
-          </div> -->
         </div>
       </ng-container>
     </div>
