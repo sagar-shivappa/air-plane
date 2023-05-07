@@ -7,27 +7,45 @@
   &_flight {
     float: left;
     font-size: 35px;
+    transition: all 0.5s;
   }
   &_flight:hover {
     cursor: pointer;
+    transform: rotate(90deg);
   }
 }
 .navItems {
   display: inline;
   float: right;
   font-size: 25px !important;
+  transition: all 1s;
 }
-.header h1 {
-  display: inline;
-  // text-shadow: 2px 2px 4px #f3f2f2;
+.navItems_airStaff:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  color: red;
+}
+.navItems_admin:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  color: red;
 }
 
-.navItems:hover {
-  cursor: pointer;
+.header h1 {
+  display: inline;
+  text-shadow: 2px 2px 4px #f3f2f2;
 }
+
 @media screen and (max-width: 800px) {
   .header {
-    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    width: 100%;
+    transition: all 0.5s; /* The width is 100%, when the viewport is 800px or smaller */
+    &_flight {
+    }
+  }
+  .header_flight:hover {
+    cursor: pointer;
+    transform: rotate(90deg);
   }
   .header h1 {
     display: inline;
@@ -36,5 +54,16 @@
     display: block;
     float: unset;
     font-size: 25px !important;
+    transition: all 1s;
+  }
+  .navItems_airStaff:hover {
+    cursor: pointer;
+    color: red;
+    transform: scale(1.05);
+  }
+  .navItems_admin:hover {
+    cursor: pointer;
+    color: red;
+    transform: scale(1.05);
   }
 }
