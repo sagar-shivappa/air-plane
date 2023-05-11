@@ -1,8 +1,9 @@
 <div class="passenger-form">
-  <div class="passenger-form_head">
-    <h2 *ngIf="passengerForm.passengerName">
+  {{ passengerForm | json }}
+  <!-- <div class="passenger-form_head">
+    <h2 *ngIf="passenger.passengerName">
       Update Passenger
-      <b>{{ passengerForm.passengerName }}</b
+      <b>{{ passenger.passengerName }}</b
       >'s Information
       <div>
         <hr />
@@ -12,10 +13,10 @@
       </div>
     </h2>
 
-    <h2 *ngIf="!passengerForm.passengerName">
+    <h2 *ngIf="!passenger.passengerName">
       Add Passenger
-      <b>{{ passengerForm.passengerName }}</b
-      >'s Information for Seat Number - {{ passengerForm.seatNumber }}
+      <b>{{ passenger.passengerName }}</b
+      >'s Information for Seat Number - {{ passenger.seatNumber }}
     </h2>
     <div
       *ngIf="errorMessage.length > 0"
@@ -24,62 +25,65 @@
     >
       {{ errorMessage }}
     </div>
-  </div>
+  </div> -->
 
-  <form action="submit" class="passenger-form_input">
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-6">
-          <div>
-            <label for="passName">Passenger Name</label>
-            <input
-              type="text"
-              id="passName"
-              name="passengerName"
-              class="form-control"
-              [(ngModel)]="passengerForm.passengerName"
-            />
-          </div>
-
-          <br />
-          <div>
-            <label for="dob">Date of Birth</label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              class="form-control"
-              [(ngModel)]="passengerForm.dateOfBirth"
-            />
-          </div>
-
-          <br />
-          <div>
-            <label for="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              class="form-control"
-              [(ngModel)]="passengerForm.address"
-            />
-          </div>
-
-          <br />
-          <div>
-            <label for="panNumber">Passport Number</label>
-            <input
-              type="text"
-              id="panNumber"
-              name="panNumber"
-              class="form-control"
-              [(ngModel)]="passengerForm.passportNumber"
-            />
-          </div>
-          <br />
+  <form
+    action="submit"
+    class="passenger-form_input"
+    [formGroup]="passengerForm"
+  >
+    <div class="row">
+      <div class="col-md-6">
+        <div id="passNameFld" class="form-group">
+          <label for="passName">Passenger Name</label>
+          <input
+            type="text"
+            id="passName"
+            name="passengerName"
+            class="form-control"
+            formControlName="passengerName"
+          />
         </div>
-        <div class="col-md-6">
-          <div>
+
+        <br />
+        <div id="dobFld" class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            class="form-control"
+            formControlName="dateOfBirth"
+          />
+        </div>
+
+        <br />
+        <div id="addFld" class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            class="form-control"
+            formControlName="address"
+          />
+        </div>
+
+        <br />
+        <div id="passNumFld" class="form-group">
+          <label for="panNumber">Passport Number</label>
+          <input
+            type="text"
+            id="panNumber"
+            name="panNumber"
+            class="form-control"
+            formControlName="passportNumber"
+          />
+        </div>
+        <br />
+      </div>
+      <!-- <div class="col-md-6" [formGroup]="passengerForm">
+          <div class="form-group">
             <label for="flightNumber"> Flight Number </label>
             <input
               type="text"
@@ -87,11 +91,11 @@
               name="flightNumber"
               class="form-control"
               readonly
-              [(ngModel)]="passengerForm.flightNumber"
+              formControlName="flightNumber"
             />
           </div>
           <br />
-          <div>
+          <div class="form-group">
             <label for="seatNumber"> Seat Number </label>
             <input
               type="number"
@@ -99,27 +103,27 @@
               name="seatNumber"
               class="form-control"
               max="20"
-              [(ngModel)]="passengerForm.seatNumber"
+              formControlName="seatNumber"
             />
           </div>
           <br />
-          <div>
+          <div class="form-group">
             <label for="ancillaryService"> Ancillary Service </label>
             <input
               name="ancillaryService"
               id="ancillaryService"
               class="form-control"
-              [(ngModel)]="passengerForm.ancillaryService"
+              formControlName="ancillaryService"
             />
           </div>
           <br />
-          <div>
+          <div class="form-group">
             <label for="mealsService"> Meals Service </label>
             <select
               name="mealsService"
               id="mealsService"
               class="form-control"
-              [(ngModel)]="passengerForm.mealsService"
+              formControlName="mealsService"
             >
               <option value="">--select from below--</option>
               <option value="Grade1">Special Meals</option>
@@ -128,26 +132,26 @@
             </select>
           </div>
           <br />
-        </div>
-      </div>
+        </div> -->
+    </div>
 
-      <div class="passenger-form_input_extras">
+    <!-- <div class="passenger-form_input_extras">
         <div>
           <input
-            *ngIf="passengerForm.checkedIn"
+            *ngIf="passenger.checkedIn"
             type="checkbox"
             id="arrived"
             name="arrived"
             value="false"
-            [(ngModel)]="passengerForm.checkedIn"
+            formControlName="checkedIn"
             checked
           />
           <input
-            *ngIf="!passengerForm.checkedIn"
+            *ngIf="!passenger.checkedIn"
             type="checkbox"
             id="arrived"
             name="arrived"
-            [(ngModel)]="passengerForm.checkedIn"
+            formControlName="checkedIn"
             value="false"
           />
 
@@ -155,20 +159,20 @@
         </div>
         <div>
           <input
-            *ngIf="passengerForm.wheelChair"
+            *ngIf="passenger.wheelChair"
             type="checkbox"
             id="wheelChair"
             name="wheelChair"
             value="false"
-            [(ngModel)]="passengerForm.wheelChair"
+            formControlName="wheelChair"
             checked
           />
           <input
-            *ngIf="!passengerForm.wheelChair"
+            *ngIf="!passenger.wheelChair"
             type="checkbox"
             id="wheelChair"
             name="wheelChair"
-            [(ngModel)]="passengerForm.wheelChair"
+            formControlName="wheelChair"
             value="false"
           />
 
@@ -176,36 +180,31 @@
         </div>
         <div>
           <input
-            *ngIf="passengerForm.infant"
+            *ngIf="passenger.infant"
             type="checkbox"
             id="infant"
             name="infant"
             value="false"
-            [(ngModel)]="passengerForm.infant"
+            formControlName="infant"
             checked
           />
           <input
-            *ngIf="!passengerForm.infant"
+            *ngIf="!passenger.infant"
             type="checkbox"
             id="infant"
             name="infant"
-            [(ngModel)]="passengerForm.infant"
+            formControlName="infant"
             value="false"
           />
 
           <label for="arrived">Is Passenger an Infant</label><br />
         </div>
-      </div>
+      </div> -->
 
-      <div>
-        <button
-          class="btn btn-success"
-          type="submit"
-          (click)="updatePassenger()"
-        >
-          Update Passenger
-        </button>
-      </div>
+    <div>
+      <button class="btn btn-success" type="submit" (click)="updatePassenger()">
+        Update Passenger
+      </button>
     </div>
   </form>
 </div>

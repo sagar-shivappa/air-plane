@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from '../shared.service';
 import { Store } from '@ngrx/store';
 import { passengerState, passengerinterface } from '../state/passenger.state';
@@ -18,21 +18,20 @@ export class PassengerComponent implements OnInit, OnDestroy {
   actionType: any;
   passengerType: any;
   selectedFlightPassengers: any;
-  passengerForm = {
-    passengerId: 1,
-    passengerName: '',
-    flightNumber: '',
-    seatNumber: 0,
-    ancillaryService: '',
-    mealsService: '',
-    checkedIn: false,
-    id: 0,
-    wheelChair: false,
-    infant: false,
-    passportNumber: '',
-    address: '',
-    dateOfBirth: '',
-  };
+
+  errorMessage: any = '';
+  passengersSubscription: Subscription | undefined;
+
+  constructor(
+    private router: Router,
+    public fb: FormBuilder,
+    public actRoute: ActivatedRoute,
+    private sharedService: SharedService,
+    private store: Store<{
+      passenger: passengerState;
+    }>
+  ) {}
+  passengerForm: FormGroup;
   passenger = {
     passengerId: 1,
     passengerName: '',
@@ -48,19 +47,23 @@ export class PassengerComponent implements OnInit, OnDestroy {
     address: '',
     dateOfBirth: '',
   };
-  errorMessage: any = '';
-  passengersSubscription: Subscription | undefined;
-
-  constructor(
-    private router: Router,
-    public actRoute: ActivatedRoute,
-    private sharedService: SharedService,
-    private store: Store<{
-      passenger: passengerState;
-    }>
-  ) {}
 
   ngOnInit(): void {
+    this.passengerForm = this.fb.group({
+      passengerId: [1],
+      passengerName: ['', Validators.required],
+      flightNumber: [''],
+      seatNumber: [0],
+      ancillaryService: [''],
+      mealsService: [''],
+      checkedIn: [false],
+      id: [0],
+      wheelChair: [false],
+      infant: [false],
+      passportNumber: [''],
+      address: [''],
+      dateOfBirth: [''],
+    });
     this.actRoute.params.subscribe((data) => {
       this.passenger.passengerId = JSON.parse(data['id']);
       this.passenger.seatNumber = this.seatNumber = data['seatno'];
@@ -78,11 +81,14 @@ export class PassengerComponent implements OnInit, OnDestroy {
           );
           if (!exsistingPassenger) {
             this.passengerType = 'new';
-            this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
+            this.passengerForm.value.passengerId = Math.floor(
+              Math.random() * 1000
+            );
             this.passengerForm = JSON.parse(JSON.stringify(this.passenger));
           } else {
             this.passengerType = 'update';
             this.passengerForm = JSON.parse(JSON.stringify(exsistingPassenger));
+            console.log(this.passengerForm);
           }
         });
     });
@@ -95,7 +101,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
   removeAllocation() {
     let a = this.passengerList.findIndex(
       (x: { passengerId: string }) =>
-        JSON.parse(x.passengerId) === this.passengerForm.passengerId
+        JSON.parse(x.passengerId) === this.passengerForm.value.passengerId
     );
     let b = JSON.parse(JSON.stringify(this.passengerList));
     b.splice(a, 1);
@@ -107,27 +113,27 @@ export class PassengerComponent implements OnInit, OnDestroy {
   }
   updatePassenger() {
     if (this.passengerType == 'new') {
-      if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
-        this.errorMessage = `Seat Number ${this.passengerForm.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
+      if (this.seatOccupied() || this.passengerForm.value.seatNumber > 20) {
+        this.errorMessage = `Seat Number ${this.passengerForm.value.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
       } else {
-        this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
-        this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
+        this.passengerForm.value.passengerId = Math.floor(Math.random() * 1000);
+        this.store.dispatch(
+          addPassenger({ passenger: this.passengerForm.value })
+        );
         this.activateRouter();
       }
     } else {
-      if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
-        this.errorMessage = `Seat Number ${this.passengerForm.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
+      if (this.seatOccupied() || this.passengerForm.value.seatNumber > 20) {
+        this.errorMessage = `Seat Number ${this.passengerForm.value.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
       } else {
-        let updatedPassengersList = this.passengerList.map(
-          (i: passengerinterface) => {
-            if (i.passengerId == this.passengerForm.passengerId) {
-              i = this.passengerForm;
-              return i;
-            } else {
-              return i;
-            }
+        let updatedPassengersList = this.passengerList.map((i: any) => {
+          if (i.passengerId == this.passengerForm.value.passengerId) {
+            i = this.passengerForm;
+            return i;
+          } else {
+            return i;
           }
-        );
+        });
 
         this.store.dispatch(
           updatePassenger({ updatedPassenger: updatedPassengersList })
@@ -154,7 +160,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
   }
   seatOccupied(): any {
     let seatOcccupied = this.selectedFlightPassengers.find(
-      (ele: any) => ele.seatNumber == this.passengerForm.seatNumber
+      (ele: any) => ele.seatNumber == this.passengerForm.value.seatNumber
     );
     if (
       this.passengerType == 'update' &&
