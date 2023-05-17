@@ -4,9 +4,9 @@
   </span>
   <h1>Welcome to Airplane Service</h1>
 
-  <div class="navItems">
+  <nav class="navItems">
     <span
-      class="navItems_airStaff"
+      class="navItems_airStaff text"
       [ngStyle]="{
         color: actionType === 'checkIn' ? 'red' : ''
       }"
@@ -15,7 +15,7 @@
     >
     <span> |</span>
     <span
-      class="navItems_admin"
+      class="navItems_admin text"
       style="margin-left: 10px"
       (click)="updateType('admin')"
       [ngStyle]="{
@@ -23,14 +23,7 @@
       }"
       >Admin</span
     >
-  </div>
+  </nav>
 </header>
-<!-- <body>
-  <img
-    src="https://www.savethestudent.org/uploads/flights.jpg"
-    alt=""
-    style="opacity: 0.6"
-  />
-</body> -->
 
 <router-outlet></router-outlet>

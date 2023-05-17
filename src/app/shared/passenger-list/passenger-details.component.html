@@ -5,9 +5,9 @@
       Add New Passenger
     </button>
     <div *ngIf="passengersList.length === 0">
-      <h2>
+      <h3>
         No passenger's found for Flight <b>{{ flightNo }}</b>
-      </h2>
+      </h3>
     </div>
     <div *ngIf="actionType === 'checkIn'">
       <label for="filterOption"> Filter By </label>
@@ -43,9 +43,9 @@
   </div>
 
   <div *ngIf="passengersList.length >= 1 && flightNo">
-    <h2>
+    <h3>
       Passengers of Flight Number <b>{{ flightNo }}</b>
-    </h2>
+    </h3>
     <table class="table table-hover table-dark">
       <thead>
         <tr>

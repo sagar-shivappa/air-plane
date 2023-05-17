@@ -49,6 +49,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     dateOfBirth: '',
   };
   errorMessage: any = '';
+  successMessage: any = '';
   passengersSubscription: Subscription | undefined;
 
   constructor(
@@ -99,11 +100,13 @@ export class PassengerComponent implements OnInit, OnDestroy {
     );
     let b = JSON.parse(JSON.stringify(this.passengerList));
     b.splice(a, 1);
-
-    this.store.dispatch(updatePassenger({ updatedPassenger: b }));
-    this.actionType == 'checkIn'
-      ? this.router.navigate(['checkin'])
-      : this.router.navigate(['admin/']);
+    this.errorMessage = `${this.passengerForm.passengerName} is removed from the journey`;
+    setTimeout(() => {
+      this.store.dispatch(updatePassenger({ updatedPassenger: b }));
+      this.actionType == 'checkIn'
+        ? this.router.navigate(['checkin'])
+        : this.router.navigate(['admin/']);
+    }, 1500);
   }
   updatePassenger() {
     if (this.passengerType == 'new') {
@@ -112,7 +115,10 @@ export class PassengerComponent implements OnInit, OnDestroy {
       } else {
         this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
         this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
-        this.activateRouter();
+        this.successMessage = 'Passenger is successfully Added';
+        setTimeout(() => {
+          this.activateRouter();
+        }, 1500);
       }
     } else {
       if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
@@ -132,7 +138,10 @@ export class PassengerComponent implements OnInit, OnDestroy {
         this.store.dispatch(
           updatePassenger({ updatedPassenger: updatedPassengersList })
         );
-        this.activateRouter();
+        this.successMessage = 'Passenger is successfully Updated';
+        setTimeout(() => {
+          this.activateRouter();
+        }, 1500);
       }
     }
   }
@@ -151,6 +160,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
       this.router.navigate(['/']);
     }
     this.errorMessage = '';
+    this.successMessage = '';
   }
   seatOccupied(): any {
     let seatOcccupied = this.selectedFlightPassengers.find(
