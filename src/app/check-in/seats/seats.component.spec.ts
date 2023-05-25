@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SeatsComponent } from './seats.component';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SeatsComponent', () => {
   let component: SeatsComponent;
@@ -8,9 +10,9 @@ describe('SeatsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SeatsComponent ]
-    })
-    .compileComponents();
+      declarations: [SeatsComponent],
+      imports: [RouterTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AirlineStaffHomeComponent } from './airline-staff-home.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AirlineStaffHomeComponent', () => {
   let component: AirlineStaffHomeComponent;
@@ -8,9 +9,10 @@ describe('AirlineStaffHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AirlineStaffHomeComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [AirlineStaffHomeComponent],
+      providers: [RouterTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
