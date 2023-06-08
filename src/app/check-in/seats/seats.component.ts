@@ -18,6 +18,7 @@ export class SeatsComponent implements OnInit {
     });
     this.sharedService.flightInfo.subscribe((data: any) => {
       this.seatAllocations = data;
+
       this.mapSeats(data);
     });
   }
