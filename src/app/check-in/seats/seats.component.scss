@@ -41,6 +41,10 @@
   text-align: center;
   display: inline-block;
 }
+.seat-alloc-info {
+  display: inline-block;
+  margin: 5%;
+}
 
 @media screen and (max-width: 800px) {
   .grid-container {

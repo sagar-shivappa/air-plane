@@ -25,6 +25,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     seatNumber: 0,
     ancillaryService: '',
     mealsService: '',
+    shoppingService: '',
     checkedIn: false,
     id: 0,
     wheelChair: false,
@@ -40,6 +41,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     seatNumber: 0,
     ancillaryService: '',
     mealsService: '',
+    shoppingService: '',
     checkedIn: false,
     id: null,
     wheelChair: false,
@@ -92,6 +94,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
       this.actionType = data;
       console.log(data);
     });
+    this.pickAvailableSeats();
   }
   removeAllocation() {
     let a = this.passengerList.findIndex(
@@ -110,39 +113,32 @@ export class PassengerComponent implements OnInit, OnDestroy {
   }
   updatePassenger() {
     if (this.passengerType == 'new') {
-      if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
-        this.errorMessage = `Seat Number ${this.passengerForm.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
-      } else {
-        this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
-        this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
-        this.successMessage = 'Passenger is successfully Added';
-        setTimeout(() => {
-          this.activateRouter();
-        }, 1500);
-      }
-    } else {
-      if (this.seatOccupied() || this.passengerForm.seatNumber > 20) {
-        this.errorMessage = `Seat Number ${this.passengerForm.seatNumber} is already Booked / ranges over available seats, try booking other seats between 1-20`;
-      } else {
-        let updatedPassengersList = this.passengerList.map(
-          (i: passengerinterface) => {
-            if (i.passengerId == this.passengerForm.passengerId) {
-              i = this.passengerForm;
-              return i;
-            } else {
-              return i;
-            }
-          }
-        );
+      this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
 
-        this.store.dispatch(
-          updatePassenger({ updatedPassenger: updatedPassengersList })
-        );
-        this.successMessage = 'Passenger is successfully Updated';
-        setTimeout(() => {
-          this.activateRouter();
-        }, 1500);
-      }
+      this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
+      this.successMessage = 'Passenger is successfully Added';
+      setTimeout(() => {
+        this.activateRouter();
+      }, 1500);
+    } else {
+      let updatedPassengersList = this.passengerList.map(
+        (i: passengerinterface) => {
+          if (i.passengerId == this.passengerForm.passengerId) {
+            i = this.passengerForm;
+            return i;
+          } else {
+            return i;
+          }
+        }
+      );
+
+      this.store.dispatch(
+        updatePassenger({ updatedPassenger: updatedPassengersList })
+      );
+      this.successMessage = 'Passenger is successfully Updated';
+      setTimeout(() => {
+        this.activateRouter();
+      }, 1500);
     }
   }
   ngOnDestroy(): void {
@@ -162,16 +158,23 @@ export class PassengerComponent implements OnInit, OnDestroy {
     this.errorMessage = '';
     this.successMessage = '';
   }
-  seatOccupied(): any {
-    let seatOcccupied = this.selectedFlightPassengers.find(
-      (ele: any) => ele.seatNumber == this.passengerForm.seatNumber
-    );
-    if (
-      this.passengerType == 'update' &&
-      JSON.stringify(seatOcccupied) != JSON.stringify(this.passengerForm)
-    ) {
-      return false;
+
+  pickAvailableSeats() {
+    const seatNumbers = document.getElementById('seatNumber');
+
+    for (let i = 1; i <= 20; i++) {
+      let data1 = this.selectedFlightPassengers.find(
+        (ele: any) => ele.seatNumber === i
+      );
+      if (!data1) {
+        var option = document.createElement('option');
+        option.setAttribute('value', JSON.stringify(i));
+
+        let optionText = document.createTextNode(`Seat Number ${i}`);
+        option.appendChild(optionText);
+
+        seatNumbers?.appendChild(option);
+      }
     }
-    return seatOcccupied;
   }
 }
