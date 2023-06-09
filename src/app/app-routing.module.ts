@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AvailableFlightsComponent } from './shared/available-flights/available-flights.component';
 import { HomeComponent } from './shared/home/home.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'flights', component: AvailableFlightsComponent },
@@ -16,6 +17,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
