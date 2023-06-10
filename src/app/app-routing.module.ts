@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AvailableFlightsComponent } from './shared/available-flights/available-flights.component';
 import { HomeComponent } from './shared/home/home.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'flights', component: AvailableFlightsComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: LoginComponent },
   {
     path: 'checkin',
     loadChildren: () =>

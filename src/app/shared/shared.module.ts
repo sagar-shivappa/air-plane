@@ -5,7 +5,7 @@ import { PassengerDetailsComponent } from './passenger-list/passenger-details.co
 import { PassengerComponent } from './passenger/passenger.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedRoutingModule } from './shared-routing.module';
-import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AvailableFlightsComponent } from './available-flights/available-flights.component';
 import { HomeComponent } from './home/home.component';
@@ -22,7 +22,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     SharedRoutingModule,
-    MatPaginatorModule,
+
     NgxPaginationModule,
   ],
   exports: [PassengerDetailsComponent, PassengerComponent, HomeComponent],
