@@ -1,31 +1,3 @@
-<header class="header">
-  <span class="material-symbols-outlined header_flight" routerLink="/home">
-    flight
-  </span>
-  <h1>Welcome to Airplane Service</h1>
-
-  <nav class="navItems">
-    <span
-      class="navItems_airStaff text"
-      [ngStyle]="{
-        color: actionType === 'checkIn' ? 'red' : ''
-      }"
-      (click)="updateType('checkIn')"
-      >AirLine Staff</span
-    >
-    <span> |</span>
-    <span
-      class="navItems_admin text"
-      style="margin-left: 10px"
-      (click)="updateType('admin')"
-      [ngStyle]="{
-        color: actionType === 'admin' ? 'red' : ''
-      }"
-      >Admin</span
-    >
-  </nav>
-</header>
-<!-- 
 <h2 class="text-center mb-4">Login with Facebook in Angular</h2>
 <div *ngIf="!isLoggedin">
   <button
@@ -70,6 +42,4 @@
   <button type="button" (click)="signOut()" class="btn btn-primary">
     Sign Out
   </button>
-</div> -->
-
-<router-outlet></router-outlet>
+</div>

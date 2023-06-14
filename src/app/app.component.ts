@@ -3,6 +3,12 @@ import { SharedService } from './shared/shared.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { passengerState } from './shared/state/passenger.state';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FacebookLoginProvider,
+  SocialAuthService,
+  SocialUser,
+} from 'angularx-social-login';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +20,7 @@ export class AppComponent implements OnInit {
   actionType: any = '';
   constructor(private sharedService: SharedService, private router: Router) {}
   ngOnInit(): void {
-    this.router.navigate(['home']);
+    this.router.navigate(['login']);
     this.sharedService.actionTypeService.subscribe((data) => {
       this.actionType = data;
     });
