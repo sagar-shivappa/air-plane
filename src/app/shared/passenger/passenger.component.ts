@@ -76,33 +76,34 @@ export class PassengerComponent implements OnInit, OnDestroy {
         .select('passenger')
         .subscribe((res: any) => {
           this.passengerList = res.passengers;
-          const exsistingPassenger = res.passengers.find(
-            (i: any) => i.passengerId == this.passenger.passengerId
-          );
-          this.selectedFlightPassengers = this.passengerList.filter(
-            (ele: any) => ele.flightNumber == this.passenger.flightNumber
-          );
-          if (!exsistingPassenger) {
-            this.passengerType = 'new';
-            this.pasgForm.controls['passengerId'].setValue(
-              Math.floor(Math.random() * 1000)
-            );
-
-            this.pasgForm.setValue(JSON.parse(JSON.stringify(this.passenger)));
-          } else {
-            this.passengerType = 'update';
-            this.pasgForm.setValue(
-              JSON.parse(JSON.stringify(exsistingPassenger))
-            );
-          }
+          this.fetchPassengerDetails();
         });
     });
     // To notice the CheckIn and Admin tabs
     this.sharedService.actionTypeService.subscribe((data: any) => {
       this.actionType = data;
-      console.log(data);
     });
     this.pickAvailableSeats();
+  }
+
+  fetchPassengerDetails() {
+    const exsistingPassenger = this.passengerList.find(
+      (i: any) => i.passengerId == this.passenger.passengerId
+    );
+    this.selectedFlightPassengers = this.passengerList.filter(
+      (ele: any) => ele.flightNumber == this.passenger.flightNumber
+    );
+    if (!exsistingPassenger) {
+      this.passengerType = 'new';
+      this.pasgForm.controls['passengerId'].setValue(
+        Math.floor(Math.random() * 1000)
+      );
+
+      this.pasgForm.setValue(JSON.parse(JSON.stringify(this.passenger)));
+    } else {
+      this.passengerType = 'update';
+      this.pasgForm.setValue(JSON.parse(JSON.stringify(exsistingPassenger)));
+    }
   }
   removeAllocation() {
     let a = this.passengerList.findIndex(

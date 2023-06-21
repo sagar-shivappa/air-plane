@@ -4,6 +4,7 @@ import { PassengerComponent } from './passenger.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 describe('PassengerComponent', () => {
   let component: PassengerComponent;
@@ -20,6 +21,7 @@ describe('PassengerComponent', () => {
         RouterTestingModule,
         Store,
         provideMockStore({ initialState }),
+        FormBuilder,
       ],
     }).compileComponents();
   });
@@ -30,7 +32,7 @@ describe('PassengerComponent', () => {
     fixture.detectChanges();
     router = TestBed.get(Router);
     navigateSpy = spyOn(router, 'navigate');
-    component.selectedFlightPassengers = [
+    component.selectedFlightPassengers = component.passengerList = [
       {
         passengerId: 1,
         passengerName: 'Sagar',
@@ -114,5 +116,45 @@ describe('PassengerComponent', () => {
     component.actionType = '';
     component.activateRouter();
     expect(navigateSpy).toHaveBeenCalledWith(['/']);
+  });
+
+  it('should pick the existing passenger details', () => {
+    component.passenger = {
+      passengerId: 7,
+      passengerName: 'Jenki',
+      flightNumber: 'b1345',
+      seatNumber: 19,
+      ancillaryService: 'Early boarding benefits',
+      mealsService: 'Grade3',
+      shoppingService: 'Bicnoculars',
+      checkedIn: true,
+      wheelChair: false,
+      infant: false,
+      passportNumber: '',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '1998-06-20',
+    };
+    component.fetchPassengerDetails();
+    expect(component.passengerType).toEqual('update');
+  });
+
+  it('should create the new passenger details', () => {
+    component.passenger = {
+      passengerId: 9797,
+      passengerName: 'Jenki',
+      flightNumber: 'b1345',
+      seatNumber: 19,
+      ancillaryService: 'Early boarding benefits',
+      mealsService: 'Grade3',
+      shoppingService: 'Bicnoculars',
+      checkedIn: true,
+      wheelChair: false,
+      infant: false,
+      passportNumber: '',
+      address: 'Ktsasa s uyjash',
+      dateOfBirth: '1998-06-20',
+    };
+    component.fetchPassengerDetails();
+    expect(component.passengerType).toEqual('new');
   });
 });
