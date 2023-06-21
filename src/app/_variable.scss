@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap");
+
+@mixin font-look {
+  font-family: "Montserrat", sans-serif;
+}
+
+$header_color: #ffffff;
+$red_color: red;
+$header_bg: linear-gradient(
+  to left bottom,
+  #0b34d8,
+  #007cff,
+  #00acff,
+  #00d4db,
+  #06f6b1
+);

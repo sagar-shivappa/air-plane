@@ -1,14 +1,9 @@
+@import "variable";
+
 .header {
-  color: white;
+  color: $header_color;
   text-align: center;
-  background-image: linear-gradient(
-    to left bottom,
-    #0b34d8,
-    #007cff,
-    #00acff,
-    #00d4db,
-    #06f6b1
-  );
+  background-image: $header_bg;
   padding: 20px;
   margin: 0px;
   &_flight {
@@ -30,12 +25,12 @@
 .navItems_airStaff:hover {
   transform: scale(1.05);
   cursor: pointer;
-  color: red;
+  color: $red_color;
 }
 .navItems_admin:hover {
   transform: scale(1.05);
   cursor: pointer;
-  color: red;
+  color: $red_color;
 }
 
 .header h1 {
@@ -65,12 +60,12 @@
   }
   .navItems_airStaff:hover {
     cursor: pointer;
-    color: red;
+    color: $red_color;
     transform: scale(1.05);
   }
   .navItems_admin:hover {
     cursor: pointer;
-    color: red;
+    color: $red_color;
     transform: scale(1.05);
   }
 }

@@ -1,5 +1,7 @@
+@import "../../variable";
 .passenger-details {
   padding: 10px;
+  @include font-look;
   &-input {
     width: 35%;
     font-size: 20px;

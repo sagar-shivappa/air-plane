@@ -1,3 +1,4 @@
+@import "../../variable";
 .passenger-form {
   &_head {
     padding: 1%;
@@ -9,6 +10,7 @@
       gap: 5%;
     }
   }
+  @include font-look;
 }
 @media screen and (max-width: 800px) {
   .passenger-form {
