@@ -163,7 +163,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     const seatNumbers = document.getElementById('seatNumber');
 
     for (let i = 1; i <= 20; i++) {
-      let data1 = this.selectedFlightPassengers.find(
+      let data1 = this.selectedFlightPassengers?.find(
         (ele: any) => ele.seatNumber === i
       );
       if (!data1) {
