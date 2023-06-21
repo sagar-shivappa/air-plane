@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from '../shared.service';
 import { Store } from '@ngrx/store';
 import { passengerState, passengerinterface } from '../state/passenger.state';
@@ -18,22 +18,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
   actionType: any;
   passengerType: any;
   selectedFlightPassengers: any;
-  passengerForm = {
-    passengerId: 1,
-    passengerName: '',
-    flightNumber: '',
-    seatNumber: 0,
-    ancillaryService: '',
-    mealsService: '',
-    shoppingService: '',
-    checkedIn: false,
-    id: 0,
-    wheelChair: false,
-    infant: false,
-    passportNumber: '',
-    address: '',
-    dateOfBirth: '',
-  };
+
   passenger = {
     passengerId: 1,
     passengerName: '',
@@ -43,7 +28,6 @@ export class PassengerComponent implements OnInit, OnDestroy {
     mealsService: '',
     shoppingService: '',
     checkedIn: false,
-    id: null,
     wheelChair: false,
     infant: false,
     passportNumber: '',
@@ -53,6 +37,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
   errorMessage: any = '';
   successMessage: any = '';
   passengersSubscription: Subscription | undefined;
+  pasgForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -60,11 +45,29 @@ export class PassengerComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private store: Store<{
       passenger: passengerState;
-    }>
+    }>,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.pasgForm = this.fb.group({
+      passengerId: [1],
+      passengerName: ['', Validators.required],
+      flightNumber: [''],
+      seatNumber: [0, Validators.required],
+      ancillaryService: [''],
+      mealsService: [''],
+      shoppingService: [''],
+      checkedIn: [false],
+      wheelChair: [false],
+      infant: [false],
+      passportNumber: [''],
+      address: [''],
+      dateOfBirth: [''],
+    });
+
     this.actRoute.params.subscribe((data) => {
+      //Got the selected flight Info
       this.passenger.passengerId = JSON.parse(data['id']);
       this.passenger.seatNumber = this.seatNumber = data['seatno'];
       this.passenger.flightNumber = data['flightNo'];
@@ -81,11 +84,16 @@ export class PassengerComponent implements OnInit, OnDestroy {
           );
           if (!exsistingPassenger) {
             this.passengerType = 'new';
-            this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
-            this.passengerForm = JSON.parse(JSON.stringify(this.passenger));
+            this.pasgForm.controls['passengerId'].setValue(
+              Math.floor(Math.random() * 1000)
+            );
+
+            this.pasgForm.setValue(JSON.parse(JSON.stringify(this.passenger)));
           } else {
             this.passengerType = 'update';
-            this.passengerForm = JSON.parse(JSON.stringify(exsistingPassenger));
+            this.pasgForm.setValue(
+              JSON.parse(JSON.stringify(exsistingPassenger))
+            );
           }
         });
     });
@@ -99,11 +107,12 @@ export class PassengerComponent implements OnInit, OnDestroy {
   removeAllocation() {
     let a = this.passengerList.findIndex(
       (x: { passengerId: string }) =>
-        JSON.parse(x.passengerId) === this.passengerForm.passengerId
+        JSON.parse(x.passengerId) ===
+        this.pasgForm.controls['passengerId'].value
     );
     let b = JSON.parse(JSON.stringify(this.passengerList));
     b.splice(a, 1);
-    this.errorMessage = `${this.passengerForm.passengerName} is removed from the journey`;
+    this.errorMessage = `${this.pasgForm.controls['passengerName'].value} is removed from the journey`;
     setTimeout(() => {
       this.store.dispatch(updatePassenger({ updatedPassenger: b }));
       this.actionType == 'checkIn'
@@ -112,33 +121,40 @@ export class PassengerComponent implements OnInit, OnDestroy {
     }, 1500);
   }
   updatePassenger() {
-    if (this.passengerType == 'new') {
-      this.passengerForm.passengerId = Math.floor(Math.random() * 1000);
-
-      this.store.dispatch(addPassenger({ passenger: this.passengerForm }));
-      this.successMessage = 'Passenger is successfully Added';
-      setTimeout(() => {
-        this.activateRouter();
-      }, 1500);
-    } else {
-      let updatedPassengersList = this.passengerList.map(
-        (i: passengerinterface) => {
-          if (i.passengerId == this.passengerForm.passengerId) {
-            i = this.passengerForm;
-            return i;
-          } else {
-            return i;
+    if (this.pasgForm.valid) {
+      if (this.passengerType == 'new') {
+        this.pasgForm.controls['passengerId'].setValue(
+          Math.floor(Math.random() * 1000)
+        );
+        this.store.dispatch(addPassenger({ passenger: this.pasgForm.value }));
+        this.errorMessage = '';
+        this.successMessage = 'Passenger is successfully Added';
+        setTimeout(() => {
+          this.activateRouter();
+        }, 1500);
+      } else {
+        let updatedPassengersList = this.passengerList.map(
+          (i: passengerinterface) => {
+            if (i.passengerId == this.pasgForm.controls['passengerId'].value) {
+              i = this.pasgForm.value;
+              return i;
+            } else {
+              return i;
+            }
           }
-        }
-      );
+        );
 
-      this.store.dispatch(
-        updatePassenger({ updatedPassenger: updatedPassengersList })
-      );
-      this.successMessage = 'Passenger is successfully Updated';
-      setTimeout(() => {
-        this.activateRouter();
-      }, 1500);
+        this.store.dispatch(
+          updatePassenger({ updatedPassenger: updatedPassengersList })
+        );
+        this.errorMessage = '';
+        this.successMessage = 'Passenger is successfully Updated';
+        setTimeout(() => {
+          this.activateRouter();
+        }, 1500);
+      }
+    } else {
+      this.errorMessage = 'Fill out all the mandatory fields *';
     }
   }
   ngOnDestroy(): void {

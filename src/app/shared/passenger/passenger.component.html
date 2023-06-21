@@ -1,8 +1,8 @@
 <div class="passenger-form">
   <div class="passenger-form_head">
-    <h3 *ngIf="passengerForm.passengerName">
+    <h3 *ngIf="pasgForm.controls['passengerName'].value">
       Update Passenger
-      <b>{{ passengerForm.passengerName }}</b
+      <b>{{ pasgForm.controls["passengerName"].value }}</b
       >'s Information
       <div>
         <hr />
@@ -12,10 +12,11 @@
       </div>
     </h3>
 
-    <h3 *ngIf="!passengerForm.passengerName">
+    <h3 *ngIf="!pasgForm.controls['passengerName'].value">
       Add Passenger
-      <b>{{ passengerForm.passengerName }}</b
-      >'s Information for Seat Number - {{ passengerForm.seatNumber }}
+      <b>{{ pasgForm.controls["passengerName"].value }}</b
+      >'s Information for Seat Number -
+      {{ pasgForm.controls["seatNumber"].value }}
     </h3>
     <div
       *ngIf="successMessage.length > 0"
@@ -33,209 +34,200 @@
     </div>
   </div>
 
-  <form action="submit" class="passenger-form_input">
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-6">
-          <div>
-            <label for="passName">Passenger Name</label>
-            <input
-              type="text"
-              id="passName"
-              name="passengerName"
-              class="form-control"
-              [(ngModel)]="passengerForm.passengerName"
-            />
-          </div>
-
-          <br />
-          <div>
-            <label for="dob">Date of Birth</label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              class="form-control"
-              [(ngModel)]="passengerForm.dateOfBirth"
-            />
-          </div>
-
-          <br />
-          <div>
-            <label for="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              class="form-control"
-              [(ngModel)]="passengerForm.address"
-            />
-          </div>
-
-          <br />
-          <div>
-            <label for="panNumber">Passport Number</label>
-            <input
-              type="text"
-              id="panNumber"
-              name="panNumber"
-              class="form-control"
-              [(ngModel)]="passengerForm.passportNumber"
-            />
-          </div>
-          <br />
-        </div>
-        <div class="col-md-6">
-          <div>
-            <label for="flightNumber"> Flight Number </label>
-            <input
-              type="text"
-              id="flightNumber"
-              name="flightNumber"
-              class="form-control"
-              readonly
-              [(ngModel)]="passengerForm.flightNumber"
-            />
-          </div>
-          <br />
-          <div>
-            <label for="seatNumber"> Seat Number </label>
-
-            <select
-              name="seatNumber"
-              id="seatNumber"
-              class="form-control"
-              [(ngModel)]="passengerForm.seatNumber"
-            ></select>
-          </div>
-          <br />
-          <div>
-            <label for="ancillaryService"> Ancillary Service </label>
-            <select
-              name="ancillaryService"
-              id="ancillaryService"
-              class="form-control"
-              [(ngModel)]="passengerForm.ancillaryService"
-            >
-              <option value="">--Select your Ancillary--</option>
-              <option value="Food and beverages">Food and beverages</option>
-              <option value="Bag check-ins">Bag check-ins</option>
-              <option value="Early boarding benefits">
-                Early boarding benefits
-              </option>
-              <option value="Seat Selection benefits">
-                Seat Selection benefits
-              </option>
-            </select>
-          </div>
-          <br />
-          <div>
-            <label for="mealsService"> Meals Service </label>
-            <select
-              name="mealsService"
-              id="mealsService"
-              class="form-control"
-              [(ngModel)]="passengerForm.mealsService"
-            >
-              <option value="">--Choose your Meal--</option>
-              <option value="Grade1">Special Meals</option>
-              <option value="Grade2">Medium Meals</option>
-              <option value="Grade3">Mini Meals</option>
-            </select>
-          </div>
-          <br />
-          <div *ngIf="actionType === 'checkIn'">
-            <label for="mealsService"> Shopping List Service </label>
-            <select
-              name="shoppingService"
-              id="shoppingService"
-              class="form-control"
-              [(ngModel)]="passengerForm.shoppingService"
-            >
-              <option value="">--Add items to bucket--</option>
-              <option value="Bicnoculars">Bicnoculars</option>
-              <option value="Wiskey">Wiskey</option>
-              <option value="American dolls">American dolls</option>
-            </select>
-          </div>
-        </div>
+  <form action="submit" class="passenger-form_input" [formGroup]="pasgForm">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="passName">Passenger Name</label>
+        <sup class="required">*</sup>
+        <input
+          type="text"
+          id="passName"
+          name="passengerName"
+          class="form-control"
+          formControlName="passengerName"
+        />
       </div>
 
+      <br />
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          class="form-control"
+          formControlName="dateOfBirth"
+        />
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          class="form-control"
+          formControlName="address"
+        />
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label for="panNumber">Passport Number</label>
+        <input
+          type="text"
+          id="panNumber"
+          name="panNumber"
+          class="form-control"
+          formControlName="passportNumber"
+        />
+      </div>
+      <br />
+      {{ "T&C apply's" }}
       <div class="passenger-form_input_extras">
-        <div>
+        <div class="form-group">
           <input
-            *ngIf="passengerForm.checkedIn"
+            *ngIf="pasgForm.controls['checkedIn'].value"
             type="checkbox"
             id="arrived"
             name="arrived"
-            value="false"
-            [(ngModel)]="passengerForm.checkedIn"
+            formControlName="checkedIn"
             checked
           />
           <input
-            *ngIf="!passengerForm.checkedIn"
+            *ngIf="!pasgForm.controls['checkedIn'].value"
             type="checkbox"
             id="arrived"
             name="arrived"
-            [(ngModel)]="passengerForm.checkedIn"
+            formControlName="checkedIn"
             value="false"
           />
 
           <label for="arrived"> Passenger Checked In</label><br />
         </div>
-        <div>
+        <div class="form-group">
           <input
-            *ngIf="passengerForm.wheelChair"
+            *ngIf="pasgForm.controls['wheelChair'].value"
             type="checkbox"
             id="wheelChair"
             name="wheelChair"
-            value="false"
-            [(ngModel)]="passengerForm.wheelChair"
+            formControlName="wheelChair"
             checked
           />
           <input
-            *ngIf="!passengerForm.wheelChair"
+            *ngIf="!pasgForm.controls['wheelChair'].value"
             type="checkbox"
             id="wheelChair"
             name="wheelChair"
-            [(ngModel)]="passengerForm.wheelChair"
+            formControlName="wheelChair"
             value="false"
           />
 
           <label for="arrived"> Wheel Chair Required?</label><br />
         </div>
-        <div>
+        <div class="form-group">
           <input
-            *ngIf="passengerForm.infant"
+            *ngIf="pasgForm.controls['infant'].value"
             type="checkbox"
             id="infant"
             name="infant"
-            value="false"
-            [(ngModel)]="passengerForm.infant"
+            formControlName="infant"
             checked
           />
           <input
-            *ngIf="!passengerForm.infant"
+            *ngIf="!pasgForm.controls['infant'].value"
             type="checkbox"
             id="infant"
             name="infant"
-            [(ngModel)]="passengerForm.infant"
+            formControlName="infant"
             value="false"
           />
 
           <label for="arrived">Is Passenger an Infant</label><br />
         </div>
       </div>
-
-      <div>
-        <button
-          class="btn btn-success"
-          type="submit"
-          (click)="updatePassenger()"
-        >
-          Update Passenger
-        </button>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="flightNumber"> Flight Number </label>
+        <input
+          type="text"
+          id="flightNumber"
+          name="flightNumber"
+          class="form-control"
+          readonly
+          formControlName="flightNumber"
+        />
       </div>
+      <br />
+      <div class="form-group">
+        <label for="seatNumber"> Seat Number </label>
+        <sup class="required">*</sup>
+
+        <select
+          name="seatNumber"
+          id="seatNumber"
+          class="form-control"
+          formControlName="seatNumber"
+        ></select>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="ancillaryService"> Ancillary Service </label>
+        <select
+          name="ancillaryService"
+          id="ancillaryService"
+          class="form-control"
+          formControlName="ancillaryService"
+        >
+          <option value="">--Select your Ancillary--</option>
+          <option value="Food and beverages">Food and beverages</option>
+          <option value="Bag check-ins">Bag check-ins</option>
+          <option value="Early boarding benefits">
+            Early boarding benefits
+          </option>
+          <option value="Seat Selection benefits">
+            Seat Selection benefits
+          </option>
+        </select>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="mealsService"> Meals Service </label>
+        <select
+          name="mealsService"
+          id="mealsService"
+          class="form-control"
+          formControlName="mealsService"
+        >
+          <option value="">--Choose your Meal--</option>
+          <option value="Grade1">Special Meals</option>
+          <option value="Grade2">Medium Meals</option>
+          <option value="Grade3">Mini Meals</option>
+        </select>
+      </div>
+      <br />
+      <div *ngIf="actionType === 'checkIn'" class="form-group">
+        <label for="mealsService"> Shopping List Service </label>
+        <select
+          name="shoppingService"
+          id="shoppingService"
+          class="form-control"
+          formControlName="shoppingService"
+        >
+          <option value="">--Add items to bucket--</option>
+          <option value="Bicnoculars">Bicnoculars</option>
+          <option value="Wiskey">Wiskey</option>
+          <option value="American dolls">American dolls</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-success" type="submit" (click)="updatePassenger()">
+        Update Passenger
+      </button>
     </div>
   </form>
 </div>

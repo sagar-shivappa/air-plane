@@ -2,6 +2,7 @@
 
 @mixin font-look {
   font-family: "Montserrat", sans-serif;
+  font-weight: 700;
 }
 
 $header_color: #ffffff;
@@ -14,3 +15,7 @@ $header_bg: linear-gradient(
   #00d4db,
   #06f6b1
 );
+.required {
+  font-size: 15px;
+  color: red;
+}
