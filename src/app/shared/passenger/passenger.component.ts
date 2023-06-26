@@ -67,7 +67,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     });
 
     this.actRoute.params.subscribe((data) => {
-      //Got the selected flight Info
+      //Got the selected flight Info-1
       this.passenger.passengerId = JSON.parse(data['id']);
       this.passenger.seatNumber = this.seatNumber = data['seatno'];
       this.passenger.flightNumber = data['flightNo'];
