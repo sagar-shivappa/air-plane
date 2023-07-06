@@ -181,16 +181,19 @@ export class PassengerComponent implements OnInit, OnDestroy {
 
     for (let i = 1; i <= 20; i++) {
       let data1 = this.selectedFlightPassengers?.find(
-        (ele: any) => ele.seatNumber === i
+        (ele: any) => JSON.parse(ele.seatNumber) === i
       );
+      var option = document.createElement('option');
+      option.setAttribute('value', JSON.stringify(i));
+
+      let optionText = document.createTextNode(`Seat Number ${i}`);
+      option.appendChild(optionText);
       if (!data1) {
-        var option = document.createElement('option');
-        option.setAttribute('value', JSON.stringify(i));
-
-        let optionText = document.createTextNode(`Seat Number ${i}`);
-        option.appendChild(optionText);
-
         seatNumbers?.appendChild(option);
+      } else {
+        this.pasgForm.controls['seatNumber'].value == JSON.stringify(i)
+          ? seatNumbers?.appendChild(option)
+          : '';
       }
     }
   }

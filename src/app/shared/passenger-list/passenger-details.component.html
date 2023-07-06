@@ -1,7 +1,11 @@
 <div class="passenger-details">
   <br />
   <div class="passenger-details_feature">
-    <button class="btn btn-info" routerLink="/passenger/0/0/{{ flightNo }}">
+    <button
+      class="btn btn-info"
+      routerLink="/passenger/0/0/{{ flightNo }}"
+      *ngIf="actionType == 'admin'"
+    >
       Add New Passenger
     </button>
     <div *ngIf="passengersList.length === 0">
