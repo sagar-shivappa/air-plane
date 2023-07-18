@@ -49,41 +49,43 @@
       </div>
 
       <br />
-      <div class="form-group">
-        <label for="dob">Date of Birth</label>
-        <input
-          type="date"
-          id="dob"
-          name="dob"
-          class="form-control"
-          formControlName="dateOfBirth"
-        />
-      </div>
+      <ng-container *ngIf="actionType == 'admin'">
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            class="form-control"
+            formControlName="dateOfBirth"
+          />
+        </div>
 
-      <br />
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input
-          type="text"
-          id="address"
-          name="address"
-          class="form-control"
-          formControlName="address"
-        />
-      </div>
+        <br />
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            class="form-control"
+            formControlName="address"
+          />
+        </div>
 
-      <br />
-      <div class="form-group">
-        <label for="panNumber">Passport Number</label>
-        <input
-          type="text"
-          id="panNumber"
-          name="panNumber"
-          class="form-control"
-          formControlName="passportNumber"
-        />
-      </div>
-      <br />
+        <br />
+        <div class="form-group">
+          <label for="panNumber">Passport Number</label>
+          <input
+            type="text"
+            id="panNumber"
+            name="panNumber"
+            class="form-control"
+            formControlName="passportNumber"
+          />
+        </div>
+        <br />
+      </ng-container>
       {{ "T&C apply's" }}
       <div class="passenger-form_input_extras">
         <div class="form-group">
@@ -173,55 +175,57 @@
         ></select>
       </div>
       <br />
-      <div class="form-group">
-        <label for="ancillaryService"> Ancillary Service </label>
-        <select
-          name="ancillaryService"
-          id="ancillaryService"
-          class="form-control"
-          formControlName="ancillaryService"
-        >
-          <option value="">--Select your Ancillary--</option>
-          <option value="Food and beverages">Food and beverages</option>
-          <option value="Bag check-ins">Bag check-ins</option>
-          <option value="Early boarding benefits">
-            Early boarding benefits
-          </option>
-          <option value="Seat Selection benefits">
-            Seat Selection benefits
-          </option>
-        </select>
-      </div>
-      <br />
-      <div class="form-group">
-        <label for="mealsService"> Meals Service </label>
-        <select
-          name="mealsService"
-          id="mealsService"
-          class="form-control"
-          formControlName="mealsService"
-        >
-          <option value="">--Choose your Meal--</option>
-          <option value="Grade1">Special Meals</option>
-          <option value="Grade2">Medium Meals</option>
-          <option value="Grade3">Mini Meals</option>
-        </select>
-      </div>
-      <br />
-      <div *ngIf="actionType === 'checkIn'" class="form-group">
-        <label for="mealsService"> Shopping List Service </label>
-        <select
-          name="shoppingService"
-          id="shoppingService"
-          class="form-control"
-          formControlName="shoppingService"
-        >
-          <option value="">--Add items to bucket--</option>
-          <option value="Bicnoculars">Bicnoculars</option>
-          <option value="Wiskey">Wiskey</option>
-          <option value="American dolls">American dolls</option>
-        </select>
-      </div>
+      <ng-container *ngIf="actionType == 'admin'">
+        <div class="form-group">
+          <label for="ancillaryService"> Ancillary Service </label>
+          <select
+            name="ancillaryService"
+            id="ancillaryService"
+            class="form-control"
+            formControlName="ancillaryService"
+          >
+            <option value="">--Select your Ancillary--</option>
+            <option value="Food and beverages">Food and beverages</option>
+            <option value="Bag check-ins">Bag check-ins</option>
+            <option value="Early boarding benefits">
+              Early boarding benefits
+            </option>
+            <option value="Seat Selection benefits">
+              Seat Selection benefits
+            </option>
+          </select>
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="mealsService"> Meals Service </label>
+          <select
+            name="mealsService"
+            id="mealsService"
+            class="form-control"
+            formControlName="mealsService"
+          >
+            <option value="">--Choose your Meal--</option>
+            <option value="Grade1">Special Meals</option>
+            <option value="Grade2">Medium Meals</option>
+            <option value="Grade3">Mini Meals</option>
+          </select>
+        </div>
+        <br />
+        <div *ngIf="actionType === 'checkIn'" class="form-group">
+          <label for="mealsService"> Shopping List Service </label>
+          <select
+            name="shoppingService"
+            id="shoppingService"
+            class="form-control"
+            formControlName="shoppingService"
+          >
+            <option value="">--Add items to bucket--</option>
+            <option value="Bicnoculars">Bicnoculars</option>
+            <option value="Wiskey">Wiskey</option>
+            <option value="American dolls">American dolls</option>
+          </select>
+        </div>
+      </ng-container>
     </div>
 
     <div>

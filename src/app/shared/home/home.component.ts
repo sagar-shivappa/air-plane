@@ -12,14 +12,12 @@ export class HomeComponent {
     {
       name: 'AirLine Staff',
       actionType: 'checkIn',
-      imgPath:
-        'https://m5.paperblog.com/i/168/1685218/tricks-recommended-by-airline-staff-L-7GnuH1.jpeg',
+      imgPath: '/assets/img/airlineStaff.jpeg',
     },
     {
       name: 'ADMIN',
       actionType: 'admin',
-      imgPath:
-        'https://www.englishclub.com/images/english-for-work/airline.png',
+      imgPath: '/assets/img/admin.png',
     },
   ];
   constructor(private sharedService: SharedService, private router: Router) {}

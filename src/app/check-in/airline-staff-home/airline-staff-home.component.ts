@@ -12,14 +12,12 @@ export class AirlineStaffHomeComponent {
     {
       name: 'Check In',
       actionType: 'flight-checkIn',
-      imgPath:
-        'https://i.pinimg.com/originals/a7/c2/a2/a7c2a20c39c1305312fbfff428db7aff.jpg',
+      imgPath: '/assets/img/checkIn.jpg',
     },
     {
       name: 'In Flight',
       actionType: 'inflight',
-      imgPath:
-        'https://cdn.businesstraveller.com/wp-content/uploads/2020/03/Vietnam-Airlines-In-flight-service-on-South-Korean-routes-over-coronavirus-outbreak.jpg',
+      imgPath: '/assets/img/inflight.jpg',
     },
   ];
   constructor(private sharedService: SharedService, private router: Router) {}
