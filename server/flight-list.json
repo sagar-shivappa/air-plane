@@ -3,24 +3,24 @@
     "flightName": "Vistara",
     "flightCode": "b1345",
     "departureTime": "13:00",
-    "imgPath": "https://i.ndtvimg.com/i/2018-02/vistara_650x400_81519372774.jpg?ver-20230421.111"
+    "imgPath": "/assets/img/vistara.jpg"
   },
   {
     "flightName": "AirIndia",
     "flightCode": "c1234",
     "departureTime": "15:00",
-    "imgPath": "https://mir-s3-cdn-cf.behance.net/projects/404/067df7141586059.Y3JvcCw3OTIsNjE5LDI1LDUw.png"
+    "imgPath": "/assets/img/airIndia.png"
   },
   {
     "flightName": "British Airlines",
     "flightCode": "b1341",
     "departureTime": "19:00",
-    "imgPath": "https://media.cntraveler.com/photos/577fcc03e0b5a6244f4c789c/master/w_3000,h_2000,c_limit/BritishAirways-Boeing777-AlamyF1KW8J.jpg"
+    "imgPath": "/assets/img/british.jpg"
   },
   {
     "flightName": "Spice jet",
     "flightCode": "s1234",
     "departureTime": "12:00",
-    "imgPath": "https://grocurv.com/media/images/SpiceJet.height-480.png"
+    "imgPath": "/assets/img/spicejet.png"
   }
 ]
