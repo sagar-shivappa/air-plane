@@ -3,24 +3,56 @@
     "flightName": "Vistara",
     "flightCode": "b1345",
     "departureTime": "13:00",
-    "imgPath": "/assets/img/vistara.jpg"
+    "imgPath": "/assets/img/vistara.jpg",
+    "ancillaryServices": [
+      "Food and beverages",
+      "Bag check-ins",
+      "Early boarding benefits",
+      "Beverage Benifits",
+      "Movie benifits"
+    ],
+    "availableAncillaryServices": ["Early boarding benefits"]
   },
   {
     "flightName": "AirIndia",
     "flightCode": "c1234",
     "departureTime": "15:00",
-    "imgPath": "/assets/img/airIndia.png"
+    "imgPath": "/assets/img/airIndia.png",
+    "ancillaryServices": [
+      "Food and beverages",
+      "Bag check-ins",
+      "Early boarding benefits",
+      "Beverage Benifits",
+      "Movie benifits"
+    ],
+    "availableAncillaryServices": ["Bag check-ins", "Early boarding benefits"]
   },
   {
     "flightName": "British Airlines",
     "flightCode": "b1341",
     "departureTime": "19:00",
-    "imgPath": "/assets/img/british.jpg"
+    "imgPath": "/assets/img/british.jpg",
+    "ancillaryServices": [
+      "Food and beverages",
+      "Bag check-ins",
+      "Early boarding benefits",
+      "Beverage Benifits",
+      "Movie benifits"
+    ],
+    "availableAncillaryServices": ["Food and beverages", "Bag check-ins"]
   },
   {
     "flightName": "Spice jet",
     "flightCode": "s1234",
     "departureTime": "12:00",
-    "imgPath": "/assets/img/spicejet.png"
+    "imgPath": "/assets/img/spicejet.png",
+    "ancillaryServices": [
+      "Food and beverages",
+      "Bag check-ins",
+      "Early boarding benefits",
+      "Beverage Benifits",
+      "Movie benifits"
+    ],
+    "availableAncillaryServices": ["Movie benifita"]
   }
 ]

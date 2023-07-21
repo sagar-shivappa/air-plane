@@ -1,10 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  addFlights,
   addPassenger,
   flightNumber,
+  updateFlights,
   updatePassenger,
 } from './passenger.action';
-import { passengerInitialState } from './passenger.state';
+import { flightsInitialState, passengerInitialState } from './passenger.state';
 
 export function passengersReducer(state: any, action: any) {
   return _passengersReducer(state, action);
@@ -31,5 +33,23 @@ const _passengersReducer = createReducer(
       ...state,
       flightNumber: '20',
     };
+  })
+);
+
+export function flightReducer(state: any, action: any) {
+  return _flightsReducer(state, action);
+}
+
+// create _flightsReducer function to handle addflight action
+
+const _flightsReducer = createReducer(
+  flightsInitialState,
+  on(addFlights, (state, action) => {
+    console.log(state, action);
+    return [...action.flights];
+  }),
+  on(updateFlights, (state, action) => {
+    console.log(state, action);
+    return [...action.updateFlight];
   })
 );

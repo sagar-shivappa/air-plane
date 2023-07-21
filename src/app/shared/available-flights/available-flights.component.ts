@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { Store } from '@ngrx/store';
+import { FlightsInterface } from '../state/passenger.state';
+import { addFlights } from '../state/passenger.action';
 
 @Component({
   selector: 'app-available-flights',
@@ -14,13 +17,17 @@ export class AvailableFlightsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private store: Store<{
+      flights: FlightsInterface;
+    }>
   ) {}
 
   ngOnInit(): void {
     this.http.get('http://localhost:8080/flight-list').subscribe((data) => {
       this.flightsList = data;
       console.log(this.flightsList);
+      this.store.dispatch(addFlights({ flights: this.flightsList }));
     });
     this.sharedService.actionTypeService.subscribe((data) => {
       this.actionType = data;

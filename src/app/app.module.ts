@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { passengersReducer } from './shared/state/passenger.reducer';
+import {
+  flightReducer,
+  passengersReducer,
+} from './shared/state/passenger.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -16,7 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ passenger: passengersReducer }),
+    StoreModule.forRoot({
+      passenger: passengersReducer,
+      flight: flightReducer,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

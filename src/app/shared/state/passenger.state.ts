@@ -242,3 +242,16 @@ export const passengerInitialState: passengerState = {
   ],
   flightNumber: '0',
 };
+
+// create interface for Flights
+export interface FlightsInterface {
+  flightName: string;
+  flightCode: string;
+  departureTime: string;
+  imgPath: string;
+  ancillaryServices: string[];
+  availableAncillaryServices: string[];
+}
+
+// create flights initialState using a
+export const flightsInitialState: FlightsInterface[] = [];
