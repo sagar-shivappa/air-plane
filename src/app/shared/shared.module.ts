@@ -9,13 +9,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AvailableFlightsComponent } from './available-flights/available-flights.component';
 import { HomeComponent } from './home/home.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    PassengerDetailsComponent,
     PassengerComponent,
     AvailableFlightsComponent,
     HomeComponent,
+    PassengerDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,14 @@ import { HomeComponent } from './home/home.component';
     SharedRoutingModule,
     MatPaginatorModule,
     NgxPaginationModule,
+    MatDialogModule,
   ],
-  exports: [PassengerDetailsComponent, PassengerComponent, HomeComponent],
+  exports: [PassengerComponent, HomeComponent, PassengerDetailsComponent],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
 })
 export class SharedModule {}

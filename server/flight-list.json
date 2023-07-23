@@ -11,7 +11,7 @@
       "Beverage Benifits",
       "Movie benifits"
     ],
-    "availableAncillaryServices": ["Early boarding benefits"]
+    "provisionedAncillaryServices": ["Early boarding benefits"]
   },
   {
     "flightName": "AirIndia",
@@ -25,7 +25,7 @@
       "Beverage Benifits",
       "Movie benifits"
     ],
-    "availableAncillaryServices": ["Bag check-ins", "Early boarding benefits"]
+    "provisionedAncillaryServices": ["Bag check-ins", "Early boarding benefits"]
   },
   {
     "flightName": "British Airlines",
@@ -39,7 +39,7 @@
       "Beverage Benifits",
       "Movie benifits"
     ],
-    "availableAncillaryServices": ["Food and beverages", "Bag check-ins"]
+    "provisionedAncillaryServices": ["Food and beverages", "Bag check-ins"]
   },
   {
     "flightName": "Spice jet",
@@ -53,6 +53,6 @@
       "Beverage Benifits",
       "Movie benifits"
     ],
-    "availableAncillaryServices": ["Movie benifita"]
+    "provisionedAncillaryServices": ["Movie benifita"]
   }
 ]

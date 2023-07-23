@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { flightNumber } from '../state/passenger.action';
 import { passengerState } from '../state/passenger.state';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { FlightServiceDialogComponent } from '../flight-service-dialog/flight-service-dialog.component';
 
 @Component({
   selector: 'app-passenger-details',
@@ -18,6 +20,7 @@ export class PassengerDetailsComponent implements OnInit {
   actionType: any;
   filterBy: any;
   p = 1;
+  saved: boolean;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private router: Router,
@@ -25,7 +28,8 @@ export class PassengerDetailsComponent implements OnInit {
     public actRoute: ActivatedRoute,
     private store: Store<{
       passenger: passengerState;
-    }>
+    }>,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -87,5 +91,28 @@ export class PassengerDetailsComponent implements OnInit {
         return data.dateOfBirth === '';
       });
     }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(FlightServiceDialogComponent, {
+      data: {
+        flightNo: this.flightNo,
+      },
+      height: '400px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'success') {
+        this.saved = true;
+      } else {
+        this.saved = false;
+      }
+      setTimeout(() => {
+        this.saved = false;
+      }, 3000);
+
+      console.log('The dialog was closed', result);
+    });
   }
 }

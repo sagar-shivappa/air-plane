@@ -49,7 +49,6 @@ const _flightsReducer = createReducer(
     return [...action.flights];
   }),
   on(updateFlights, (state, action) => {
-    console.log(state, action);
     return [...action.updateFlight];
   })
 );

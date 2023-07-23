@@ -19,15 +19,13 @@ export class AvailableFlightsComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     private store: Store<{
-      flights: FlightsInterface;
+      flight: FlightsInterface;
     }>
   ) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/flight-list').subscribe((data) => {
+    this.store.select('flight').subscribe((data) => {
       this.flightsList = data;
-      console.log(this.flightsList);
-      this.store.dispatch(addFlights({ flights: this.flightsList }));
     });
     this.sharedService.actionTypeService.subscribe((data) => {
       this.actionType = data;

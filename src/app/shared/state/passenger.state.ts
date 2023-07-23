@@ -250,8 +250,215 @@ export interface FlightsInterface {
   departureTime: string;
   imgPath: string;
   ancillaryServices: string[];
-  availableAncillaryServices: string[];
+  provisionedAncillaryServices: string[];
+  shoppingService: string[];
+  provisionedShoppingItems: string[];
 }
 
 // create flights initialState using a
-export const flightsInitialState: FlightsInterface[] = [];
+export const flightsInitialState: FlightsInterface[] = [
+  {
+    flightName: 'Vistara',
+    flightCode: 'b1345',
+    departureTime: '13:00',
+    imgPath: '/assets/img/vistara.jpg',
+    ancillaryServices: [
+      'Food and beverages',
+      'Bag check-ins',
+      'Early boarding benefits',
+      'Beverage Benifits',
+      'Movie benifits',
+    ],
+    provisionedAncillaryServices: ['Early boarding benefits'],
+    shoppingService: [
+      'American dolls',
+      'Bicnoculars',
+      'Wiskey',
+      'Bedsheets',
+
+      'Pillows',
+
+      'Sleeping bag',
+
+      'Educational supplies',
+
+      'Purse',
+
+      'Backpack',
+
+      'Towel',
+
+      'Water bottle',
+
+      'Sunglasses',
+
+      'Books',
+
+      'Journals',
+
+      'Watch',
+    ],
+    provisionedShoppingItems: [
+      'American dolls',
+      'Bicnoculars',
+      'Sleeping bag',
+
+      'Educational supplies',
+    ],
+  },
+  {
+    flightName: 'AirIndia',
+    flightCode: 'c1234',
+    departureTime: '15:00',
+    imgPath: '/assets/img/airIndia.png',
+    ancillaryServices: [
+      'Food and beverages',
+      'Bag check-ins',
+      'Early boarding benefits',
+      'Beverage Benifits',
+      'Movie benifits',
+    ],
+    provisionedAncillaryServices: ['Bag check-ins', 'Early boarding benefits'],
+    shoppingService: [
+      'American dolls',
+      'Bicnoculars',
+      'Wiskey',
+      'Bedsheets',
+
+      'Pillows',
+
+      'Sleeping bag',
+
+      'Educational supplies',
+
+      'Purse',
+
+      'Backpack',
+
+      'Towel',
+
+      'Water bottle',
+
+      'Sunglasses',
+
+      'Books',
+
+      'Journals',
+
+      'Watch',
+    ],
+    provisionedShoppingItems: [
+      'American dolls',
+      'Bicnoculars',
+      'Towel',
+
+      'Water bottle',
+
+      'Sunglasses',
+    ],
+  },
+  {
+    flightName: 'British Airlines',
+    flightCode: 'b1341',
+    departureTime: '19:00',
+    imgPath: '/assets/img/british.jpg',
+    ancillaryServices: [
+      'Food and beverages',
+      'Bag check-ins',
+      'Early boarding benefits',
+      'Beverage Benifits',
+      'Movie benifits',
+    ],
+    provisionedAncillaryServices: ['Food and beverages', 'Bag check-ins'],
+    shoppingService: [
+      'American dolls',
+      'Bicnoculars',
+      'Wiskey',
+      'Bedsheets',
+
+      'Pillows',
+
+      'Sleeping bag',
+
+      'Educational supplies',
+
+      'Purse',
+
+      'Backpack',
+
+      'Towel',
+
+      'Water bottle',
+
+      'Sunglasses',
+
+      'Books',
+
+      'Journals',
+
+      'Watch',
+    ],
+    provisionedShoppingItems: [
+      'American dolls',
+      'Bicnoculars',
+      'Sunglasses',
+
+      'Books',
+
+      'Journals',
+    ],
+  },
+  {
+    flightName: 'Spice jet',
+    flightCode: 's1234',
+    departureTime: '12:00',
+    imgPath: '/assets/img/spicejet.png',
+    ancillaryServices: [
+      'Food and beverages',
+      'Bag check-ins',
+      'Early boarding benefits',
+      'Beverage Benifits',
+      'Movie benifits',
+    ],
+    provisionedAncillaryServices: ['Movie benifita'],
+    shoppingService: [
+      'American dolls',
+      'Bicnoculars',
+      'Wiskey',
+      'Bedsheets',
+
+      'Pillows',
+
+      'Sleeping bag',
+
+      'Educational supplies',
+
+      'Purse',
+
+      'Backpack',
+
+      'Towel',
+
+      'Water bottle',
+
+      'Sunglasses',
+
+      'Books',
+
+      'Journals',
+
+      'Watch',
+    ],
+    provisionedShoppingItems: [
+      'American dolls',
+      'Bicnoculars',
+      'Bedsheets',
+
+      'Pillows',
+
+      'Sleeping bag',
+
+      'Educational supplies',
+    ],
+  },
+];

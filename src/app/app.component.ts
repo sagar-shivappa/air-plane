@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from './shared/shared.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { passengerState } from './shared/state/passenger.state';
+import { FlightsInterface } from './shared/state/passenger.state';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
