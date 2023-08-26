@@ -197,4 +197,8 @@ export class PassengerComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  pickAncillaryAndShoppingServices() {
+    const seatNumbers = document.getElementById('ancillaryService');
+  }
 }

@@ -98,7 +98,7 @@ export class PassengerDetailsComponent implements OnInit {
       data: {
         flightNo: this.flightNo,
       },
-      height: '400px',
+      height: '350px',
       width: '600px',
     });
 

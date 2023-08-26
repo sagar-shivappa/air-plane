@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   Ancillary Service:
   <mat-form-field [formGroup]="flightDetails">
-    <mat-label>Select Ancillary Service</mat-label>
+    <mat-label>--Select--</mat-label>
     <mat-select formControlName="selectedAncillaryServices" multiple>
       <mat-option
         *ngFor="let service of availableAncillaryServices"
@@ -12,10 +12,10 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div mat-dialog-content>
-  Shopping Items
+<div mat-dialog-content class="form-group">
+  Shopping Items:
   <mat-form-field [formGroup]="flightDetails">
-    <mat-label>Select Shopping Items: </mat-label>
+    <mat-label>--Select--</mat-label>
     <mat-select formControlName="providedShoppingItems" multiple>
       <mat-option
         *ngFor="let service of availableShoppingItems"
@@ -25,7 +25,13 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div>
-  <button class="btn btn-info" (click)="close()">Cancel</button>
-  <button class="btn btn-success" (click)="updateFlightDetails()">Save</button>
+<div class="button-align">
+  <div>
+    <button class="btn btn-info" (click)="close()">Cancel</button>
+  </div>
+  <div>
+    <button class="btn btn-success" (click)="updateFlightDetails()">
+      Save
+    </button>
+  </div>
 </div>

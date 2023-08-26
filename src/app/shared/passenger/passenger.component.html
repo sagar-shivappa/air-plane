@@ -176,15 +176,23 @@
       </div>
       <br />
       <ng-container *ngIf="actionType == 'admin'">
-        <div class="form-group">
-          <label for="ancillaryService"> Ancillary Service </label>
+        <!-- <div class="form-group"> -->
+        <!-- <label for="ancillaryService"> Ancillary Service </label>
           <select
             name="ancillaryService"
             id="ancillaryService"
             class="form-control"
             formControlName="ancillaryService"
-          >
-            <option value="">--Select your Ancillary--</option>
+          > -->
+        <select class="select" multiple>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+          <option value="4">Four</option>
+          <option value="5">Five</option>
+        </select>
+        <label class="form-label select-label">Example label</label>
+        <!-- <option value="">--Select your Ancillary--</option>
             <option value="Food and beverages">Food and beverages</option>
             <option value="Bag check-ins">Bag check-ins</option>
             <option value="Early boarding benefits">
@@ -192,9 +200,9 @@
             </option>
             <option value="Seat Selection benefits">
               Seat Selection benefits
-            </option>
-          </select>
-        </div>
+            </option> -->
+        <!-- </select> -->
+        <!-- </div> -->
         <br />
         <div class="form-group">
           <label for="mealsService"> Meals Service </label>
