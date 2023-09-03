@@ -87,6 +87,9 @@ export class FlightServiceDialogComponent implements OnInit {
           objCopy.provisionedAncillaryServices = [
             ...this.flightDetails.controls['selectedAncillaryServices'].value,
           ];
+          objCopy.provisionedShoppingItems = [
+            ...this.flightDetails.controls['providedShoppingItems'].value,
+          ];
           return objCopy;
         }
         return flight;

@@ -3,7 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from '../shared.service';
 import { Store } from '@ngrx/store';
-import { passengerState, passengerinterface } from '../state/passenger.state';
+import {
+  FlightsInterface,
+  passengerState,
+  passengerinterface,
+} from '../state/passenger.state';
 import { Subscription } from 'rxjs';
 import { addPassenger, updatePassenger } from '../state/passenger.action';
 @Component({
@@ -24,7 +28,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     passengerName: '',
     flightNumber: '',
     seatNumber: 0,
-    ancillaryService: '',
+    ancillaryService: [],
     mealsService: '',
     shoppingService: '',
     checkedIn: false,
@@ -38,6 +42,8 @@ export class PassengerComponent implements OnInit, OnDestroy {
   successMessage: any = '';
   passengersSubscription: Subscription | undefined;
   pasgForm: FormGroup;
+  providedAncillaryService: any;
+  providedShoppingService: any;
 
   constructor(
     private router: Router,
@@ -45,6 +51,7 @@ export class PassengerComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private store: Store<{
       passenger: passengerState;
+      flight: FlightsInterface;
     }>,
     private fb: FormBuilder
   ) {}
@@ -82,6 +89,17 @@ export class PassengerComponent implements OnInit, OnDestroy {
     // To notice the CheckIn and Admin tabs
     this.sharedService.actionTypeService.subscribe((data: any) => {
       this.actionType = data;
+    });
+
+    //The below is to get the flight details from the store
+    this.store.select('flight').subscribe((res: any) => {
+      let response: any = res.filter(
+        (data: FlightsInterface) =>
+          data.flightCode == this.passenger.flightNumber
+      );
+
+      this.providedAncillaryService = response[0].provisionedAncillaryServices;
+      this.providedShoppingService = response[0].provisionedShoppingItems;
     });
     this.pickAvailableSeats();
   }
@@ -150,11 +168,13 @@ export class PassengerComponent implements OnInit, OnDestroy {
         );
         this.errorMessage = '';
         this.successMessage = 'Passenger is successfully Updated';
+        window.scrollTo(0, 0);
         setTimeout(() => {
           this.activateRouter();
         }, 1500);
       }
     } else {
+      window.scrollTo(0, 0);
       this.errorMessage = 'Fill out all the mandatory fields *';
     }
   }

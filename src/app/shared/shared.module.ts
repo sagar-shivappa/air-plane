@@ -10,6 +10,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AvailableFlightsComponent } from './available-flights/available-flights.component';
 import { HomeComponent } from './home/home.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     MatPaginatorModule,
     NgxPaginationModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   exports: [PassengerComponent, HomeComponent, PassengerDetailsComponent],
   providers: [
